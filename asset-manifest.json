@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/green_syria/static/css/main.88123a6c.css",
+    "main.js": "/green_syria/static/js/main.44c4b03c.js",
+    "static/media/plant_2.png": "/green_syria/static/media/plant_2.f9c2bfee38b5b7e59925.png",
+    "static/media/Almarai-Bold.ttf": "/green_syria/static/media/Almarai-Bold.6950c5a6d2dcd9e29b5d.ttf",
+    "static/media/Almarai-Regular.ttf": "/green_syria/static/media/Almarai-Regular.4d8fe12612ad34e16602.ttf",
+    "static/media/Login_logo.png": "/green_syria/static/media/Login_logo.fd5afd258cb236d23762.png",
+    "static/media/plant_3.jpg": "/green_syria/static/media/plant_3.8b43ff72a5918074b35e.jpg",
+    "index.html": "/green_syria/index.html",
+    "main.88123a6c.css.map": "/green_syria/static/css/main.88123a6c.css.map",
+    "main.44c4b03c.js.map": "/green_syria/static/js/main.44c4b03c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.88123a6c.css",
+    "static/js/main.44c4b03c.js"
+  ]
+}
