@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { HiOutlineLogout } from "react-icons/hi";
-import { BsPersonFillGear } from "react-icons/bs";
+// import { BsPersonFillGear } from "react-icons/bs";
 import { PiGearFineFill } from "react-icons/pi";
 import { MdOutlineUnfoldMoreDouble } from "react-icons/md";
 
@@ -35,9 +35,9 @@ const Navbar = () => {
           {/* {user?.role === 'Master' && ( */}
           <>
             <Link
-              to="/syria_green/volunteers"
+              to="/green_syria/dashboard/volunteers"
               className={`text-green-500 text-sm md:text-lg mx-3 py-3 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
-                path.pathname.includes("/syria_green/volunteers")
+                path.pathname.includes("/green_syria/dashboard/volunteers")
                   ? customPathStyle
                   : ""
               }`}
@@ -45,9 +45,9 @@ const Navbar = () => {
               المتطوعين
             </Link>
             <Link
-              to="/syria_green/plant_stores"
+              to="/green_syria/dashboard/plant_stores"
               className={`text-green-500 text-sm md:text-lg mx-3 py-3 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
-                path.pathname.includes("/syria_green/plant_stores")
+                path.pathname.includes("/green_syria/dashboard/plant_stores")
                   ? customPathStyle
                   : ""
               }`}
@@ -55,9 +55,9 @@ const Navbar = () => {
               المشاتل
             </Link>
             <Link
-              to="/syria_green/join_requests"
+              to="/green_syria/dashboard/join_requests"
               className={`text-green-500 text-sm md:text-lg mx-3 py-3 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
-                path.pathname.includes("/syria_green/join_requests")
+                path.pathname.includes("/green_syria/dashboard/join_requests")
                   ? customPathStyle
                   : ""
               }`}
@@ -65,9 +65,11 @@ const Navbar = () => {
               طلبات الانضمام
             </Link>
             <Link
-              to="/syria_green/institutions"
+              to="/green_syria/dashboard/institutions"
               className={`text-green-500 text-sm md:text-lg mx-3 py-3 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
-                path.pathname === "/syria_green/institutions" ? customPathStyle : ""
+                path.pathname === "/green_syria/dashboard/institutions"
+                  ? customPathStyle
+                  : ""
               }`}
             >
               المؤسسات
@@ -85,9 +87,9 @@ const Navbar = () => {
           {/* {user?.role === 'Master' && ( */}
           <>
             <Link
-              to="/syria_green/profile"
+              to="/green_syria/dashboard/profile"
               className={`text-green-500 hidden md:flex text-3xl py-3 px-3 ml-5 border-b-2 hover:text-green-300 border-transparent cursor-pointer ${
-                path.pathname === "/syria_green/profile"
+                path.pathname === "/green_syria/dashboard/profile"
                   ? customPathStyle
                   : ""
               }`}
@@ -108,48 +110,52 @@ const Navbar = () => {
             toggleFull ? "md:flex translate-y-1" : ""
           } transition delay-150 duration-300 ease-in-out hover:scale-105`}
         >
-          {/* {user?.role === 'Master' && ( */}
-          <>
-            <Link
-              to="/syria_green/traffics"
-              className={`text-green-500 text-sm md:text-lg mx-3 py-3 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
-                path.pathname.includes("/syria_green/traffics")
-                  ? customPathStyle
-                  : ""
-              }`}
-            >
-              الزيارات
-            </Link>
-            <Link
-              to="/syria_green/addmasteradmin"
-              className={`text-green-500 text-sm md:text-lg mx-3 py-3 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
-                path.pathname.includes("/syria_green/addmasteradmin")
-                  ? customPathStyle
-                  : ""
-              }`}
-            >
-              إضافة آدمن
-            </Link>
-            <Link
-              to="/syria_green/categories"
-              className={`text-green-500 text-sm md:text-lg mx-3 py-3 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
-                path.pathname.includes("/syria_green/categories")
-                  ? customPathStyle
-                  : ""
-              }`}
-            >
-              المدونة
-            </Link>
-            <Link
-              to="/syria_green/works"
-              className={`text-green-500 text-sm md:text-lg mx-3 py-3 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
-                path.pathname === "/syria_green/works" ? customPathStyle : ""
-              }`}
-            >
-              الأعمال
-            </Link>
-          </>
-          {/* )} */}
+          {user?.user?.role === "admin" && (
+            <>
+              <Link
+                to="/green_syria/dashboard/traffics"
+                className={`text-green-500 text-sm md:text-lg mx-3 py-3 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
+                  path.pathname.includes("/green_syria/dashboard/traffics")
+                    ? customPathStyle
+                    : ""
+                }`}
+              >
+                الزيارات
+              </Link>
+              <Link
+                to="/green_syria/dashboard/addmasteradmin"
+                className={`text-green-500 text-sm md:text-lg mx-3 py-3 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
+                  path.pathname.includes(
+                    "/green_syria/dashboard/addmasteradmin"
+                  )
+                    ? customPathStyle
+                    : ""
+                }`}
+              >
+                إضافة آدمن
+              </Link>
+            </>
+          )}
+          <Link
+            to="/green_syria/dashboard/categories"
+            className={`text-green-500 text-sm md:text-lg mx-3 py-3 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
+              path.pathname.includes("/green_syria/dashboard/categories")
+                ? customPathStyle
+                : ""
+            }`}
+          >
+            المدونة
+          </Link>
+          <Link
+            to="/green_syria/dashboard/works"
+            className={`text-green-500 text-sm md:text-lg mx-3 py-3 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
+              path.pathname === "/green_syria/dashboard/works"
+                ? customPathStyle
+                : ""
+            }`}
+          >
+            الأعمال
+          </Link>
         </div>
         <button
           onClick={() => setToggleNav((old) => !old)}
@@ -163,96 +169,109 @@ const Navbar = () => {
           toggleNav ? "flex" : "hidden"
         }`}
       >
-        <>
-          <Link
-            onClick={() => setToggleNav((old) => !old)}
-            to="/syria_green/traffics"
-            className={`text-green-500 text-sm md:text-lg mx-3 my-2 py-1 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
-              path.pathname.includes("/syria_green/traffics")
-                ? customPathStyle
-                : ""
-            }`}
-          >
-            الزيارات
-          </Link>
-          <Link
-            onClick={() => setToggleNav((old) => !old)}
-            to="/syria_green/addmasteradmin"
-            className={`text-green-500 text-sm md:text-lg mx-3 my-2 py-1 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
-              path.pathname.includes("/syria_green/addmasteradmin")
-                ? customPathStyle
-                : ""
-            }`}
-          >
-            إضافة آدمن
-          </Link>
-          <Link
-            onClick={() => setToggleNav((old) => !old)}
-            to="/syria_green/join_requests"
-            className={`text-green-500 text-sm md:text-lg mx-3 my-2 py-1 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
-              path.pathname.includes("/syria_green/join_requests")
-                ? customPathStyle
-                : ""
-            }`}
-          >
-            طلبات الانضمام
-          </Link>
-          <Link
-            onClick={() => setToggleNav((old) => !old)}
-            to="/syria_green/institutions"
-            className={`text-green-500 text-sm md:text-lg mx-3 my-2 py-1 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
-              path.pathname === "/syria_green/institutions" ? customPathStyle : ""
-            }`}
-          >
-            المؤسسات
-          </Link>
-          <Link
-            onClick={() => setToggleNav((old) => !old)}
-            to="/syria_green/plant_stores"
-            className={`text-green-500 text-sm md:text-lg mx-3 my-2 py-1 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
-              path.pathname === "/syria_green/plant_stores" ? customPathStyle : ""
-            }`}
-          >
-            المشاتل
-          </Link>
-          <Link
-            onClick={() => setToggleNav((old) => !old)}
-            to="/syria_green/volunteers"
-            className={`text-green-500 text-sm md:text-lg mx-3 my-2 py-1 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
-              path.pathname === "/syria_green/volunteers" ? customPathStyle : ""
-            }`}
-          >
-            المتطوعين
-          </Link>
-          <Link
-            onClick={() => setToggleNav((old) => !old)}
-            to="/syria_green/categories"
-            className={`text-green-500 text-sm md:text-lg mx-3 my-2 py-1 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
-              path.pathname === "/syria_green/categories" ? customPathStyle : ""
-            }`}
-          >
-            المدونة
-          </Link>
-          <Link
-            onClick={() => setToggleNav((old) => !old)}
-            to="/syria_green/works"
-            className={`text-green-500 text-sm md:text-lg mx-3 my-2 py-1 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
-              path.pathname === "/syria_green/works" ? customPathStyle : ""
-            }`}
-          >
-            الأعمال
-          </Link>
-          <Link
-            onClick={() => setToggleNav((old) => !old)}
-            to="/syria_green/profile"
-            className={`text-green-500 text-sm md:text-lg mx-3 my-2 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
-              path.pathname === "/syria_green/profile" ? customPathStyle : ""
-            }`}
-          >
-            الملف الشخصي
-          </Link>
-        </>
-        {/* )} */}
+        {user?.user?.role === "admin" && (
+          <>
+            <Link
+              onClick={() => setToggleNav((old) => !old)}
+              to="/green_syria/dashboard/traffics"
+              className={`text-green-500 text-sm md:text-lg mx-3 my-2 py-1 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
+                path.pathname.includes("/green_syria/dashboard/traffics")
+                  ? customPathStyle
+                  : ""
+              }`}
+            >
+              الزيارات
+            </Link>
+            <Link
+              onClick={() => setToggleNav((old) => !old)}
+              to="/green_syria/dashboard/addmasteradmin"
+              className={`text-green-500 text-sm md:text-lg mx-3 my-2 py-1 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
+                path.pathname.includes("/green_syria/dashboard/addmasteradmin")
+                  ? customPathStyle
+                  : ""
+              }`}
+            >
+              إضافة آدمن
+            </Link>
+          </>
+        )}
+        <Link
+          onClick={() => setToggleNav((old) => !old)}
+          to="/green_syria/dashboard/join_requests"
+          className={`text-green-500 text-sm md:text-lg mx-3 my-2 py-1 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
+            path.pathname.includes("/green_syria/dashboard/join_requests")
+              ? customPathStyle
+              : ""
+          }`}
+        >
+          طلبات الانضمام
+        </Link>
+        <Link
+          onClick={() => setToggleNav((old) => !old)}
+          to="/green_syria/dashboard/institutions"
+          className={`text-green-500 text-sm md:text-lg mx-3 my-2 py-1 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
+            path.pathname === "/green_syria/dashboard/institutions"
+              ? customPathStyle
+              : ""
+          }`}
+        >
+          المؤسسات
+        </Link>
+        <Link
+          onClick={() => setToggleNav((old) => !old)}
+          to="/green_syria/dashboard/plant_stores"
+          className={`text-green-500 text-sm md:text-lg mx-3 my-2 py-1 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
+            path.pathname === "/green_syria/dashboard/plant_stores"
+              ? customPathStyle
+              : ""
+          }`}
+        >
+          المشاتل
+        </Link>
+        <Link
+          onClick={() => setToggleNav((old) => !old)}
+          to="/green_syria/dashboard/volunteers"
+          className={`text-green-500 text-sm md:text-lg mx-3 my-2 py-1 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
+            path.pathname === "/green_syria/dashboard/volunteers"
+              ? customPathStyle
+              : ""
+          }`}
+        >
+          المتطوعين
+        </Link>
+        <Link
+          onClick={() => setToggleNav((old) => !old)}
+          to="/green_syria/dashboard/categories"
+          className={`text-green-500 text-sm md:text-lg mx-3 my-2 py-1 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
+            path.pathname === "/green_syria/dashboard/categories"
+              ? customPathStyle
+              : ""
+          }`}
+        >
+          المدونة
+        </Link>
+        <Link
+          onClick={() => setToggleNav((old) => !old)}
+          to="/green_syria/dashboard/works"
+          className={`text-green-500 text-sm md:text-lg mx-3 my-2 py-1 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
+            path.pathname === "/green_syria/dashboard/works"
+              ? customPathStyle
+              : ""
+          }`}
+        >
+          الأعمال
+        </Link>
+        <Link
+          onClick={() => setToggleNav((old) => !old)}
+          to="/green_syria/dashboard/profile"
+          className={`text-green-500 text-sm md:text-lg mx-3 my-2 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300 ${
+            path.pathname === "/green_syria/dashboard/profile"
+              ? customPathStyle
+              : ""
+          }`}
+        >
+          الملف الشخصي
+        </Link>
         <button
           onClick={logout}
           className={`text-green-500 text-sm md:text-lg mx-3 my-2 px-2 border-b-2 border-transparent cursor-pointer hover:text-green-300`}

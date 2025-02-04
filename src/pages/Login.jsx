@@ -27,7 +27,7 @@ const Login = () => {
               email: data.userName,
               password: data.password,
             })
-          : await axiosPrivate.post("/api", {
+          : await axiosPrivate.post("/api/admin/assAdmin/login", {
               email: data.userName,
               password: data.password,
             });
@@ -39,11 +39,11 @@ const Login = () => {
         sessionStorage.setItem("accessT", response.data.token);
         sessionStorage.setItem("user", JSON.stringify(user));
         toast.success("تم تسجيل الدخول بنجاح");
-        navigate("/syria_green");
+        navigate("/green_syria/dashboard");
         console.log(response);
       } catch (error) {
         console.log(error);
-        toast.error('البريد أو كلمة المرور غير صحيحة');
+        toast.error("البريد أو كلمة المرور غير صحيحة");
       }
     }
     setLoading(false);
@@ -83,12 +83,12 @@ const Login = () => {
             type="password"
             isRequired={true}
           />
-          <div className="w-full flex justify-end px-2 py-4">
-            <p className="text-white fontReg px-3">هل انت الآدمن الرئيسي ؟</p>
+          <div className="w-full flex justify-end items-center px-2 py-4">
+            <p className="text-white fontReg text-sm md:text-lg px-3">هل انت الآدمن الرئيسي ؟</p>
             <input
               onChange={(e) => setType(e.target.checked)}
               type="checkbox"
-              className="w-6 h-6"
+              className="w-4 h-4 mr-2 md:w-6 md:h-6"
             />
           </div>
           <CustomButton

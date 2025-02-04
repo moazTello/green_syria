@@ -69,20 +69,6 @@ const useStore = create((set) => ({
     }
   },
 
-  Organizations: [],
-  setOrganizations: (Organizations) => set({ Organizations }),
-  // fetchOrganizationsList: async () => {
-  //   set({ isLoading: true, error: null });
-  //   try {
-  //     const response = await axiosPrivate.get('/api/client/getOrganizations');
-  //     set({ Organizations: response.data, isLoading: false });
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.log(error);
-  //     set({ error: error.message, isLoading: false });
-  //   }
-  // },
-
   fetchOrganizationsList: async () => {
     set({ isLoading: true, error: null });
     try {
@@ -120,17 +106,81 @@ const useStore = create((set) => ({
     }
   },
 
-  addOrganization: async (data) => {
+  addAdmin: async (data) => {
     set({ isLoading: true, error: null });
     try {
-      await DataTransfer.post("/api/masterAdmin/addOrg", data, {
+      const response = await DataTransfer.post("/api/admin/createAdmin", data, {
         headers: {
           Authorization: `Bearer ${useStore.getState().token}`,
-          // 'Content-Type': 'application/json',
           "Content-Type": "multipart/form-data",
         },
       });
       set({ isLoading: false });
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+      return error;
+    }
+  },
+
+  addAdminAssisstent: async (data) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await DataTransfer.post(
+        "/api/admin/createAssAdmin",
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      set({ isLoading: false });
+      console.log(response);
+      return response;
+    } catch (error) {
+      set({ error: error.message, isLoading: false });
+      console.log(error);
+      return error;
+    }
+  },
+
+
+  addVolunteer: async (data) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await DataTransfer.post("/api/admin/createVolunteer", data, {
+        headers: {
+          Authorization: `Bearer ${useStore.getState().token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      set({ isLoading: false });
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+      return error;
+    }
+  },
+  volunteersList: [],
+  setVolunteersList: (volunteersList) => set({ volunteersList }),
+  fetchVolunteersList: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axiosPrivate.get(
+        "api/admin/getAllVolunteers?page=1&per_page=50",
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+          },
+        }
+      );
+      set({ volunteersList: response.data.allVolunteers, isLoading: false });
     } catch (error) {
       console.log(error);
       set({ error: error.message, isLoading: false });

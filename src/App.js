@@ -15,17 +15,18 @@ import Volunteers from "./pages/Volunteers";
 import Categories from "./pages/Categories";
 import Admins from "./pages/Admins";
 import Category from "./pages/Category";
+import AddVolunteer from "./pages/AddVolunteer";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/syria_green" element={<Layout />}>
+        <Route path="/green_syria" element={<Login />} />
+        <Route path="/green_syria/dashboard" element={<Layout />}>
           <Route
             index
             element={
-              <PrivateRoute allowedRoles={["Master"]}>
+              <PrivateRoute allowedRoles={["adminAss", "admin"]}>
                 <Home />
               </PrivateRoute>
             }
@@ -33,7 +34,7 @@ function App() {
           <Route
             path="traffics"
             element={
-              <PrivateRoute allowedRoles={["Master"]}>
+              <PrivateRoute allowedRoles={["admin"]}>
                 <Trafic />
               </PrivateRoute>
             }
@@ -41,7 +42,7 @@ function App() {
           <Route
             path="addmasteradmin"
             element={
-              <PrivateRoute allowedRoles={["Master"]}>
+              <PrivateRoute allowedRoles={["admin"]}>
                 <AddAdmin />
               </PrivateRoute>
             }
@@ -49,7 +50,7 @@ function App() {
           <Route
             path="works"
             element={
-              <PrivateRoute allowedRoles={["Master"]}>
+              <PrivateRoute allowedRoles={["adminAss", "admin"]}>
                 <Works />
               </PrivateRoute>
             }
@@ -57,7 +58,7 @@ function App() {
           <Route
             path="plant_stores"
             element={
-              <PrivateRoute allowedRoles={["Master"]}>
+              <PrivateRoute allowedRoles={["adminAss", "admin"]}>
                 <PlantStores />
               </PrivateRoute>
             }
@@ -65,7 +66,7 @@ function App() {
           <Route
             path="join_requests"
             element={
-              <PrivateRoute allowedRoles={["Master"]}>
+              <PrivateRoute allowedRoles={["adminAss", "admin"]}>
                 <JoinRequests />
               </PrivateRoute>
             }
@@ -73,7 +74,7 @@ function App() {
           <Route
             path="profile"
             element={
-              <PrivateRoute allowedRoles={["Master"]}>
+              <PrivateRoute allowedRoles={["adminAss", "admin"]}>
                 <Profile />
               </PrivateRoute>
             }
@@ -81,8 +82,16 @@ function App() {
           <Route
             path="volunteers"
             element={
-              <PrivateRoute allowedRoles={["Master"]}>
+              <PrivateRoute allowedRoles={["adminAss", "admin"]}>
                 <Volunteers />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="addvolunteer"
+            element={
+              <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                <AddVolunteer />
               </PrivateRoute>
             }
           />
@@ -97,7 +106,7 @@ function App() {
           <Route
             path="institutions"
             element={
-              <PrivateRoute allowedRoles={["Master"]}>
+              <PrivateRoute allowedRoles={["adminAss", "admin"]}>
                 <Admins />
               </PrivateRoute>
             }
@@ -106,7 +115,7 @@ function App() {
             <Route
               index
               element={
-                <PrivateRoute allowedRoles={["AssistentAdmin", "Master"]}>
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
                   <Categories />
                 </PrivateRoute>
               }
@@ -114,7 +123,7 @@ function App() {
             <Route
               path="addcategory"
               element={
-                <PrivateRoute allowedRoles={["AssistentAdmin", "Master"]}>
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
                   {/* <AddProject /> */}
                 </PrivateRoute>
               }
@@ -122,7 +131,7 @@ function App() {
             <Route
               path=":category"
               element={
-                <PrivateRoute allowedRoles={["Master"]}>
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
                   <Category />
                 </PrivateRoute>
               }
@@ -130,7 +139,7 @@ function App() {
             <Route
               path="projectdetails/:projid"
               element={
-                <PrivateRoute allowedRoles={["AssistentAdmin", "Master"]}>
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
                   {/* <ProjectDetails /> */}
                 </PrivateRoute>
               }
@@ -138,7 +147,7 @@ function App() {
             <Route
               path="projectdetails/:projid/editProject"
               element={
-                <PrivateRoute allowedRoles={["AssistentAdmin", "Master"]}>
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
                   {/* <EditProject /> */}
                 </PrivateRoute>
               }
@@ -146,7 +155,7 @@ function App() {
             <Route
               path="projectdetails/:projid/suggestions"
               element={
-                <PrivateRoute allowedRoles={["AssistentAdmin", "Master"]}>
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
                   {/* <Suggestions /> */}
                 </PrivateRoute>
               }
@@ -154,7 +163,7 @@ function App() {
             <Route
               path="projectdetails/:projid/comments"
               element={
-                <PrivateRoute allowedRoles={["AssistentAdmin", "Master"]}>
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
                   {/* <Comments /> */}
                 </PrivateRoute>
               }
@@ -162,7 +171,7 @@ function App() {
             <Route
               path="projectdetails/:projid/comments/:actid"
               element={
-                <PrivateRoute allowedRoles={["AssistentAdmin", "Master"]}>
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
                   {/* <CommentsAct /> */}
                 </PrivateRoute>
               }
@@ -170,7 +179,7 @@ function App() {
             <Route
               path="projectdetails/:projid/openions"
               element={
-                <PrivateRoute allowedRoles={["Master"]}>
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
                   {/* <Openions /> */}
                 </PrivateRoute>
               }
@@ -178,7 +187,7 @@ function App() {
             <Route
               path="projectdetails/:projid/openiondetails/:opid"
               element={
-                <PrivateRoute allowedRoles={["Master"]}>
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
                   {/* <OpenionDetails /> */}
                 </PrivateRoute>
               }
