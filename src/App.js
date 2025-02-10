@@ -16,6 +16,14 @@ import Categories from "./pages/Categories";
 import Admins from "./pages/Admins";
 import Category from "./pages/Category";
 import AddVolunteer from "./pages/AddVolunteer";
+import EditVolunteer from "./pages/EditVolunteer";
+import AddPlantStore from "./pages/AddPlantStore";
+import Events from "./pages/Events";
+import AddEvent from "./pages/AddEvent";
+import EventDetails from "./pages/EventDetails";
+import DetailsPlantStore from "./pages/DetailsPlantStore";
+import EditPlantStore from "./pages/EditPlantStore";
+import DetailsVolunteer from "./pages/DetailsVolunteer";
 
 function App() {
   return (
@@ -55,14 +63,69 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route
-            path="plant_stores"
-            element={
-              <PrivateRoute allowedRoles={["adminAss", "admin"]}>
-                <PlantStores />
-              </PrivateRoute>
-            }
-          />
+
+<Route path="events">
+            <Route
+              index
+              element={
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                  <Events />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="addevent"
+              element={
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                  <AddEvent />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path=":eventid"
+              element={
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                  <EventDetails />
+                </PrivateRoute>
+              }
+            />
+          </Route>
+
+
+          <Route path="plant_stores">
+            <Route
+              index
+              element={
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                  <PlantStores />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="addPlantStore"
+              element={
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                  <AddPlantStore />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="edit/:editplantstoreid"
+              element={
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                  <EditPlantStore />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path=":plantstoreid"
+              element={
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                  <DetailsPlantStore />
+                </PrivateRoute>
+              }
+            />
+          </Route>
           <Route
             path="join_requests"
             element={
@@ -79,22 +142,40 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route
-            path="volunteers"
-            element={
-              <PrivateRoute allowedRoles={["adminAss", "admin"]}>
-                <Volunteers />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="addvolunteer"
-            element={
-              <PrivateRoute allowedRoles={["adminAss", "admin"]}>
-                <AddVolunteer />
-              </PrivateRoute>
-            }
-          />
+          <Route path="volunteers">
+            <Route
+              index
+              element={
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                  <Volunteers />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="addvolunteer"
+              element={
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                  <AddVolunteer />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path=":volid"
+              element={
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                  <DetailsVolunteer />
+                </PrivateRoute>
+              }
+            />
+             <Route
+              path="edit/:volid"
+              element={
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                  <EditVolunteer />
+                </PrivateRoute>
+              }
+            />
+          </Route>
           {/* <Route
             path="categories"
             element={

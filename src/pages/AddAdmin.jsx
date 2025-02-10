@@ -7,6 +7,7 @@ import InputField from "../components/fields/InputField";
 import useStore from "../zustand/useStore";
 import CustomButton from "../components/fields/CustomButton";
 import ImageUploader from "../components/fields/ImageUploader";
+import imageCompression from "browser-image-compression";
 
 const AddAdmin = () => {
   const {
@@ -23,9 +24,14 @@ const AddAdmin = () => {
     if (data.password !== data.password_confirmation) {
       return toast.error("تأكد من كلمة المرور");
     }
-    if(data.password.length < 8){
+    if (data.password.length < 8) {
       return toast.error("كلمة المرور يجب ان تكون ٨ أحرف على الأقل");
     }
+    const compressionOptions = {
+      maxSizeMB: 0.4,
+      maxWidthOrHeight: 600,
+      useWebWorker: true,
+    };
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("orgName", data.orgName);
@@ -35,9 +41,45 @@ const AddAdmin = () => {
     formData.append("address", data.address);
     formData.append("phone", data.phone);
     formData.append("desc", data.desc);
-    data.LogoImage && formData.append("logo", data.LogoImage);
-    data.Images && formData.append("images", data.Images);
-    console.log(data);
+    if (data?.LogoImage) {
+      const logoFile = data.LogoImage;
+      if (logoFile.type.match(/image\/(jpeg|jpg|png|gif)/)) {
+        if (logoFile.size > 400 * 1024) {
+          toast.success("يتم الآن ضغط الصور");
+          const compressedLogo = await imageCompression(
+            logoFile,
+            compressionOptions
+          );
+          formData.append("logo", compressedLogo);
+        } else {
+          formData.append("logo", logoFile);
+        }
+      } else {
+        return toast.error(
+          "يجب ان يكون نوع الصورة من هذه الأنواع فقط  jpeg, jpg, png, gif"
+        );
+      }
+    } else {
+      return toast.error("الصورة مطلوبة");
+    }
+
+    if (data?.Images && data.Images.length > 0) {
+      toast.success("يتم الآن ضغط الصور");
+      const imageArray = Array.isArray(data.Images)
+        ? data.Images
+        : Array.from(data.Images);
+      for (const [index, file] of imageArray.entries()) {
+        if (file.size > 800 * 1024) {
+          const compressedImage = await imageCompression(
+            file,
+            compressionOptions
+          );
+          formData.append(`imgs[${index}]`, compressedImage);
+        } else {
+          formData.append(`imgs[${index}]`, file);
+        }
+      }
+    }
     try {
       let response = "";
       if (type) {
@@ -49,8 +91,13 @@ const AddAdmin = () => {
         toast.success("تم إضافة آدمن جديد بنجاح");
         navigate("/green_syria/dashboard");
       }
-      if(response?.response?.data?.message === "The email has already been taken."){
-        toast.error("البريد الالكتروني مستخدم مسبقاً يرجى اختيار بريد الكتروني آخر ");
+      if (
+        response?.response?.data?.message ===
+        "The email has already been taken."
+      ) {
+        toast.error(
+          "البريد الالكتروني مستخدم مسبقاً يرجى اختيار بريد الكتروني آخر "
+        );
       }
     } catch (error) {
       console.log(error);
@@ -59,7 +106,7 @@ const AddAdmin = () => {
   };
   return (
     <div
-      className={`bg-gradient-to-t from-[#33663b] to-[#55B063] min-h-[100vh] w-full flex flex-col  md:flex-row md:justify-center items-center py-8`}
+      className={`bg-gradient-to-t from-[#33663b] to-[#55B063] min-h-[100vh] w-full flex flex-col  md:flex-row-reverse md:justify-center items-center py-8`}
     >
       <div className="w-full md:w-[40%] md:m-10 flex flex-col justify-center items-center">
         <img
@@ -67,10 +114,17 @@ const AddAdmin = () => {
           alt="logo"
           className="rounded-[5%] w-[50%] md:w-[80%] mt-4 md:my-0"
         />
-        <p className="text-right fontBold w-[80%] md:w-[90%] mb-5 text-white text-sm md:text-lg">
+        <p className="text-right fontBold w-[80%] md:w-[90%] mt-5 text-white text-sm md:text-lg">
           هنا يمكنك إضافة آدمن رئيسي او مؤسسة (آدمن مساعد) قم بتفعيل خيار آدمن
-          رئيسي ليستطيع من الإطلاع على الزيارات و إضافة آدمن
+          رئيسي ليستطيع من الإطلاع على الزيارات و إضافة آدمن، من المفضل ان تكون
+          قياسات الصورة المرفقة للمتطوع بقياس العرض ضعفي الطول لتتناسب مع قياس
+          واجهات التطبيق
         </p>
+        <img
+          src={images.explain_image_4}
+          alt="logo"
+          className="rounded-[5%] w-[50%] md:w-[80%] my-4"
+        />
       </div>
       <div className="w-full md:w-[50%] flex flex-col px-2 md:px-10 hover:shadow-3xl py-5 hover:shadow-yellow-50 justify-center items-center bg-[rgba(255,255,255,20%)] rounded-2xl">
         <p className="fontBold text-white text-lg md:text-2xl my-6">
@@ -145,14 +199,11 @@ const AddAdmin = () => {
             })}
             isRequired={true}
           />
-          <InputField
-            headerText="الوصف"
-            error={errors?.desc?.message}
-            register={register("desc", {
-              required: "الوصف مطلوب",
-            })}
-            placeholder="إضافة وصف مختصر للمؤسسة"
-            isRequired={true}
+          <textarea
+            className="w-full fontReg outline-none min-h-40 resize-none rounded-xl bg-[#1a202c] bg-opacity-80 text-right p-4 text-green-300 text-sm md:text-lg"
+            {...register("desc")}
+            required={true}
+            placeholder="إضافة وصف مختصر"
           />
           <ImageUploader
             register={register}

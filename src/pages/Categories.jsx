@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Categories = () => {
   const value = 4;
   return (
-    <div className="bg-gradient-to-t from-[#f9f9f9] to-[#4CA871] min-h-[100vh] flex flex-col items-center">
+    <div className="bg-gradient-to-t from-[#33663b] to-[#55B063] min-h-[100vh] flex flex-col items-center">
       <div className="w-full flex flex-col justify-center items-center relative">
         <div className="w-full flex justify-between items-center mt-10 px-5 md:px-10">
           <BiSolidMessageCheck className="text-white text-2xl md:text-6xl"/>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const ImageUploader = ({ setValue, errors, backendLogo, backendImages, logo }) => {
+const ImageUploader = ({ setValue, errors, backendLogo, backendImages, logo, images, details}) => {
   const [logoPreview, setLogoPreview] = useState(null);
   const [imagePreviews, setImagePreviews] = useState([]);
 
@@ -38,29 +38,29 @@ const ImageUploader = ({ setValue, errors, backendLogo, backendImages, logo }) =
 
   return (
     <div>
-      <div className="w-full flex flex-col justify-center items-center my-4">
-        <label
+      {!images && <div className="w-full flex flex-col justify-center items-center my-4">
+        {!details && <label
           htmlFor="logo-image"
           className="w-full py-3 fontReg rounded-lg text-xs md:text-sm hover:bg-white hover:text-[#55B063] text-center text-white bg-[#55B063] cursor-pointer"
         >
           {logoPreview ? 'تعديل اللوغو' : 'إضافة لوغو'}
-        </label>
+        </label>}
         <input id="logo-image" type="file" className="hidden" onChange={handleLogoChange} />
-        {errors.LogoImage && <p>{errors.LogoImage.message}</p>}
+        {errors?.LogoImage && <p>{errors?.LogoImage?.message}</p>}
         {logoPreview && <img className="my-6 h-32 rounded-lg" src={logoPreview} alt="logo" />}
-      </div>
+      </div>}
       {!logo && <div className="w-full flex flex-col justify-center items-center mb-4">
-        <label
+        {!details && <label
           htmlFor="images2"
           className="w-full py-3 fontReg rounded-lg my-5 text-xs md:text-sm hover:bg-white hover:text-[#55B063] text-center text-white bg-[#55B063] cursor-pointer"
         >
-         {imagePreviews.length > 0  ? 'تعديل كافة الصور' : 'إضافة صور'}
-        </label>
+         {imagePreviews?.length > 0  ? 'تعديل كافة الصور' : 'إضافة صور'}
+        </label>}
         <input id="images2" multiple type="file" className="hidden" onChange={handleImagesChange2} />
-        {errors.Images && <p>{errors.Images.message}</p>}
-        {imagePreviews.length > 0 && (
+        {errors?.Images && <p>{errors?.Images.message}</p>}
+        {imagePreviews?.length > 0 && (
           <div className="flex flex-wrap gap-4 my-4">
-            {imagePreviews.map((src, index) => (
+            {imagePreviews?.map((src, index) => (
               <img key={index} src={src} alt={`image-${index}`} className="w-64 h-32 object-cover rounded-lg" />
             ))}
           </div>
