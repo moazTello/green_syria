@@ -90,8 +90,8 @@ const AddVolunteer = () => {
           alt="logo"
           className="rounded-[5%] w-[50%] md:w-[80%] mt-4 md:my-0"
         />
-        <p className="text-right fontBold w-[80%] md:w-[90%] my-10 text-white text-sm md:text-lg">
-          من المفضل ان تكون قياسات الصورة المرفقة للمتطوع بقياس العرض ضعفي الطول
+        <p className="text-right fontReg w-[80%] md:w-[90%] my-10 text-white text-sm md:text-lg">
+          من المفضل ان تكون قياسات الصورة المرفقة للمتطوع بقياس العرض يساوي الطول
           لتتناسب مع قياس واجهات التطبيق
         </p>
         <img
@@ -154,6 +154,7 @@ const AddVolunteer = () => {
               customStyleComponent="mr-2"
             />
             <InputField
+              type="number"
               headerText="رقم الجوال"
               error={errors?.phone?.message}
               register={register("phone", {

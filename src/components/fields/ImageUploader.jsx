@@ -45,7 +45,7 @@ const ImageUploader = ({ setValue, errors, backendLogo, backendImages, logo, ima
         >
           {logoPreview ? 'تعديل اللوغو' : 'إضافة لوغو'}
         </label>}
-        <input id="logo-image" type="file" className="hidden" onChange={handleLogoChange} />
+        <input id="logo-image" type="file" className="hidden" onChange={handleLogoChange} accept="image/jpeg, image/png, image/jpg"/>
         {errors?.LogoImage && <p>{errors?.LogoImage?.message}</p>}
         {logoPreview && <img className="my-6 h-32 rounded-lg" src={logoPreview} alt="logo" />}
       </div>}
@@ -56,7 +56,7 @@ const ImageUploader = ({ setValue, errors, backendLogo, backendImages, logo, ima
         >
          {imagePreviews?.length > 0  ? 'تعديل كافة الصور' : 'إضافة صور'}
         </label>}
-        <input id="images2" multiple type="file" className="hidden" onChange={handleImagesChange2} />
+        <input id="images2" multiple type="file" className="hidden" onChange={handleImagesChange2} accept="image/jpeg, image/png, image/jpg"/>
         {errors?.Images && <p>{errors?.Images.message}</p>}
         {imagePreviews?.length > 0 && (
           <div className="flex flex-wrap gap-4 my-4">

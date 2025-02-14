@@ -129,9 +129,9 @@ const EditPlantStore = () => {
     >
       <div className="w-full z-10 md:w-[40%] md:m-10 flex flex-col justify-center items-center">
         <img
-          src={images.plant_store_image}
+          src={images.edit_plant_store_hight}
           alt="logo"
-          className="rounded-[5%] z-10 w-[50%] md:w-[80%] mt-4 md:my-0 shadow-3xl shadow-yellow-50"
+          className="rounded-[5%] z-10 w-[50%] md:w-[80%] mt-4 md:my-0"
         />
         <p className="text-right z-10 fontBold w-[80%] md:w-[90%] my-7 text-white text-sm md:text-lg">
           تظهر لك تفاصيل المشتل يمكنك تعديل المشتل بإعادة ملأ الحقول المراد
@@ -251,6 +251,7 @@ const EditPlantStore = () => {
               id="logo-image"
               type="file"
               className="hidden"
+              accept="image/jpeg, image/png, image/jpg"
             />
             {errors?.LogoImage && <p>{errors?.logo?.message}</p>}
             {watch("LogoImage") && watch("LogoImage")?.length > 0 && (
@@ -281,6 +282,7 @@ const EditPlantStore = () => {
               multiple
               type="file"
               className="hidden"
+              accept="image/jpeg, image/png, image/jpg"
             />
             {watch("Images") && watch("Images")?.length > 0 && (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">

@@ -1,67 +1,59 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { images } from "../constants";
 import { useForm } from "react-hook-form";
 import InputField from "../components/fields/InputField";
 import useStore from "../zustand/useStore";
 import ImageUploader from "../components/fields/ImageUploader";
 import { useEffect } from "react";
-const DetailsPlantStore = () => {
-  const { plantstoreid } = useParams();
+const DetailsInstitution = () => {
+  const { institutionid } = useParams();
   const { register, setValue, watch } = useForm();
   const { fetchElement } = useStore();
   useEffect(() => {
     const fetch = async () => {
-      const response = await fetchElement(plantstoreid, "plan");
+      const response = await fetchElement(institutionid, "adminAss");
       if (!response) {
         return;
       }
       setValue("name", response.name);
-      setValue("ownerName", response.ownerName);
+      setValue("orgName", response.orgName);
       setValue("phone", response.phone);
       setValue("address", response.address);
       setValue("email", response.email);
       setValue("desc", response.desc);
-      setValue("closeTime", response.closeTime);
-      setValue("openTime", response.openTime);
       setValue("LogoImage", response.logo);
       setValue("userName", response.userName);
       let imar = response?.images?.map((item) => item.img);
       setValue("Images", imar);
     };
     fetch();
-  }, [fetchElement, plantstoreid, setValue]);
+  }, [fetchElement, institutionid, setValue]);
   return (
     <div
       className={`bg-gradient-to-t from-[#33663b] to-[#55B063] min-h-[100vh] w-full flex flex-col md:flex-row-reverse md:justify-center items-start py-8`}
     >
-      <div className="w-full md:w-[40%] md:m-10 flex flex-col justify-center items-center">
+      <div className="w-full md:w-[40%] md:m-10 flex flex-col justify-center items-center relative">
+      
         <img
-          src={images.plant_store_hight}
+          src={images.orange_tree}
           alt="logo"
-          className="rounded-[5%] w-[50%] md:w-[80%] mt-4 md:my-0"
+          className="rounded-[5%] w-[50%] md:w-[80%] mt-4 md:my-0 shadow-xl shadow-orange-200"
         />
-        <p className="text-right fontBold w-[80%] md:w-[90%] my-5 text-white text-sm md:text-lg">
-          تظهر لك تفاصيل المشتل إذا أردت تعديل معلومات المشتل فانتقل إلى تعديل
-          المشتل
+        <p className="text-right fontBold w-[80%] md:w-[90%] my-10 text-white text-sm md:text-lg">
+          تعرف أكثر عن هذه المؤسسة الداعمة لهذا المشروع التنموي ، يمكنك مراسلة المؤسسة عن طريق البريد الالكتروني الخاص بها لزيادة الفاعلية
         </p>
-        <Link
-          to={`/green_syria/dashboard/plant_stores/edit/${plantstoreid}`}
-          className="mb-10 md:my-5 bg-slate-50 w-[80%] text-center rounded-lg p-2 md:p-4 text-sm md:text-lg text-green-600 hover:bg-yellow-50"
-        >
-          تعديل المشتل
-        </Link>
       </div>
       <div className="w-full md:w-[50%] flex flex-col px-2 md:px-10 hover:shadow-3xl py-5 hover:shadow-yellow-50 justify-center items-center bg-[rgba(255,255,255,20%)] rounded-2xl">
         <p className="fontBold text-white text-lg md:text-2xl my-6">
-          تفاصيل المشتل
+          تفاصيل المؤسسة
         </p>
         <form className="w-full">
           <div className="w-full flex items-start justify-center">
-            <InputField
-              headerText="اسم المالك"
-              register={register("ownerName")}
-              customStyleComponent="mr-2"
+          <InputField
+              headerText="المنظمة"
+              register={register("orgName")}
               disable={true}
+              customStyleComponent="mr-2"
             />
             <InputField
               headerText="الإسم"
@@ -85,27 +77,6 @@ const DetailsPlantStore = () => {
             />
           </div>
           <div className="w-full flex items-start justify-center">
-            <InputField
-              type="Time"
-              headerText="نهاية الدوام "
-              register={register("closeTime")}
-              disable={true}
-              customStyleComponent="mr-2"
-            />
-            <InputField
-              type="Time"
-              headerText="بداية الدوام"
-              register={register("openTime")}
-              disable={true}
-            />
-          </div>
-          <div className="w-full flex items-start justify-center">
-            <InputField
-              headerText="اسم المستخدم"
-              register={register("userName")}
-              customStyleComponent="mr-2"
-              disable={true}
-            />
             <InputField
               headerText="العنوان"
               register={register("address")}
@@ -175,4 +146,4 @@ const DetailsPlantStore = () => {
   );
 };
 
-export default DetailsPlantStore;
+export default DetailsInstitution;

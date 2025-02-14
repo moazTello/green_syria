@@ -11,19 +11,20 @@
   }
 }
 @font-face {
-  font-family: 'AlmariaFontBold';
-  src: url('./assets/fonts/Almarai-Bold.ttf') format('truetype');
+  font-family: 'CairoFontBold';
+  src: url('./assets/fonts/Cairo-Bold.ttf') format('truetype');
 }
 @font-face {
-  font-family: 'AlmariaFontRegular';
-  src: url('./assets/fonts/Almarai-Regular.ttf') format('truetype');
+  font-family: 'CairoFontRegular';
+  src: url('./assets/fonts/Cairo-Regular.ttf') format('truetype');
 }
 .fontReg{
-  font-family: "AlmariaFontRegular";
+  font-family: "CairoFontRegular";
 }
 .fontBold{
-  font-family: "AlmariaFontBold";
+  font-family: "CairoFontBold";
 }
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

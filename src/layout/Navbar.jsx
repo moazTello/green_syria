@@ -315,7 +315,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import useStore from "../zustand/useStore";
 
 const Navbar = () => {
-  const { user, logoutMaster, logoutOrg } = useStore();
+  const { user, logoutAdmin } = useStore();
   const navigate = useNavigate();
   const path = useLocation();
   const customPathStyle = "border-green-600 bg-green-500 text-white";
@@ -324,15 +324,15 @@ const Navbar = () => {
   const [toggleadv, setToggleadv] = useState(false);
 
   const logout = async () => {
-    user.role === "Master" ? await logoutMaster() : await logoutOrg();
+    // user.role === "Master" ? await logoutMaster() : await logoutOrg();
+    await logoutAdmin();
     sessionStorage.setItem("accessT", null);
     sessionStorage.setItem("user", null);
-    sessionStorage.setItem("organization", null);
-    navigate("/");
+    navigate("/green_syria");
   };
 
   return (
-    <div className="z-50 w-full bg-[#1a202c] relative text-white shadow-lg backdrop-blur-sm">
+    <div className="z-50 w-full fontReg bg-[#1a202c] relative text-white shadow-lg backdrop-blur-sm">
       <div className="max-w-screen-xl mx-auto flex justify-between items-center py-4 px-6">
         <div className="flex items-center">
           <Link
@@ -394,11 +394,13 @@ const Navbar = () => {
           </button>
           <Link
             to="/green_syria/dashboard/profile"
-            className={`text-2xl transition duration-300 px-1 rounded-md hover:text-green-400 ${
-              path.pathname === "/green_syria/dashboard/profile"
-                ? customPathStyle
-                : "text-orange-500"
-            }`}
+            className={`text-3xl transition duration-300 p-2 rounded-md hover:text-green-400 
+              ${
+                path.pathname === "/green_syria/dashboard/profile"
+                  ? customPathStyle
+                  : "text-orange-500"
+              }
+            `}
           >
             <PiGearFineFill />
           </Link>
@@ -533,7 +535,7 @@ const Navbar = () => {
           onClick={() => setToggleNav(false)}
           to="/green_syria/dashboard/join_requests"
           className={`block px-4 py-2 rounded-md transition duration-300 text-right ${
-            path.pathname.includes("/green_syria/dashboard/join_requests") 
+            path.pathname.includes("/green_syria/dashboard/join_requests")
               ? customPathStyle
               : "text-green-300"
           }`}
@@ -599,7 +601,6 @@ const Navbar = () => {
         >
           الأحداث
         </Link>
-
         <Link
           onClick={() => setToggleNav(false)}
           to="/green_syria/dashboard/works"
@@ -622,7 +623,6 @@ const Navbar = () => {
         >
           المدونة
         </Link>
-
         <Link
           onClick={() => setToggleNav(false)}
           to="/green_syria/dashboard/profile"

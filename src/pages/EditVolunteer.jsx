@@ -113,9 +113,9 @@ const EditVolunteer = () => {
     >
       <div className="w-full z-10 md:w-[40%] md:m-10 flex flex-col justify-center items-center">
         <img
-          src={images.volunteer_3}
+          src={images.volunteer_edit}
           alt="logo"
-          className="rounded-[5%] z-10 w-[50%] md:w-[80%] mt-4 md:my-0 shadow-3xl shadow-yellow-50"
+          className="rounded-[5%] z-10 w-[50%] md:w-[80%] mt-4 md:my-0"
         />
         {/* <img
           src={images.pattern}
@@ -211,6 +211,7 @@ const EditVolunteer = () => {
               id="logo-image"
               type="file"
               className="hidden"
+              accept="image/jpeg, image/png, image/jpg"
             />
             {errors?.LogoImage && <p>{errors?.logo?.message}</p>}
             {watch("LogoImage") && watch("LogoImage")?.length > 0 && (

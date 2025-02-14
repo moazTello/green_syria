@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { BiSolidMessageCheck } from "react-icons/bi";
+import { useParams } from "react-router-dom";
 import useStore from "../zustand/useStore";
 import WorkItem from "../components/WorkItem";
 
-const Works = () => {
-  const { fetchWorksList, worksList } = useStore();
+const VolunteerWorks = () => {
+  const { fetchVolunteerWorksList, volunteerWorksList } = useStore();
+  const {volid} = useParams();
+    const [tag, setTag] = useState(0);
   useEffect(() => {
-    fetchWorksList();
-  }, [fetchWorksList]);
-  const [tag, setTag] = useState(0);
+    fetchVolunteerWorksList(volid);
+  }, [fetchVolunteerWorksList, volid]);
   const value = 4;
-  console.log(worksList);
   return (
     <div className="bg-gradient-to-t from-[#33663b] to-[#55B063] min-h-[100vh] flex flex-col items-center">
       <div className="w-full flex flex-col justify-center items-center relative">
@@ -18,20 +19,15 @@ const Works = () => {
           <BiSolidMessageCheck className="text-white text-2xl md:text-6xl" />
           <p className="text-white fontReg text-right w-full text-xl md:text-4xl">
             {" "}
-            الأعمال ⚒️
+            الأعمال <span className="p-2 mx-1"> ⚒️ </span>
           </p>
         </div>
-        <p className="text-slate-50 fontReg text-sm w-full px-8 md:px-16 my-2 md:my-4 md:text-lg text-right">
+        <p className="text-slate-50 fontReg text-sm w-full px-8 md:px-16 my-4 md:my-4 md:text-lg text-right">
           {" "}
-          هنا يمكنك رؤية كافة الأعمال
+          هنا يمكنك رؤية كافة الأعمال الخاصة بالمتطوع
         </p>
       </div>
-      {/* <Link
-        to="/green_syria/dashboard/volunteers/addvolunteer"
-        className="my-2 md:my-5 fontReg bg-slate-50 w-[80%] text-center rounded-lg p-2 md:p-4 text-sm md:text-lg text-green-600 hover:bg-yellow-50"
-      >
-        إضافة عمل جديد
-      </Link> */}
+
       <div className="flex fontReg text-sm md:text-lg items-center border-t-2 border-yellow-200 w-[90%] justify-center my-5">
         <button
           onClick={() => setTag(0)}
@@ -43,7 +39,7 @@ const Works = () => {
         >
           قيد الانتظار
         </button>
-        <button
+        {/* <button
           onClick={() => setTag(1)}
           className={`p-2 rounded-b-lg hover:bg-orange-700 hover:text-yellow-200 mx-1 ${
             tag === 1
@@ -52,7 +48,7 @@ const Works = () => {
           }`}
         >
           غير منجزة
-        </button>
+        </button> */}
         <button
           onClick={() => setTag(2)}
           className={`p-2 rounded-b-lg hover:bg-orange-700 hover:text-yellow-200 mx-1 ${
@@ -79,15 +75,24 @@ const Works = () => {
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
             {" "}
-            هنا تظهر لك الأعمال المسندة الى متطوع و هي اعمال منجزة و التي لا
-            يمكنك حذفها
+            هنا تظهر لك الأعمال و الأشجار المسندة الى المتطوع و هي اعمال منجزة
           </p>
           <div className="w-full flex justify-center">
             <div
               className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${value}`}
             >
-              {worksList?.done_works?.length > 0 &&
-                worksList?.done_works?.map((work, index) => (
+              {volunteerWorksList?.doneTrees?.length > 0 &&
+                volunteerWorksList?.doneTrees?.map((work, index) => (
+                  <WorkItem deleted={false} key={index} data={work} />
+                ))}
+            </div>
+          </div>
+          <div className="w-full flex justify-center">
+            <div
+              className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${value}`}
+            >
+              {volunteerWorksList?.doneWorks?.length > 0 &&
+                volunteerWorksList?.doneWorks?.map((work, index) => (
                   <WorkItem deleted={false} key={index} data={work} />
                 ))}
             </div>
@@ -99,15 +104,24 @@ const Works = () => {
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
             {" "}
-            هنا تظهر لك الأعمال المسندة الى متطوع و هي غير منجزة بعد و التي لا
-            يمكنك حذفها
+            هنا تظهر لك الأعمال و الأشجار المسندة الى المتطوع و هي غير منجزة بعد
           </p>
           <div className="w-full flex justify-center">
             <div
               className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${value}`}
             >
-              {worksList?.false_works?.length > 0 &&
-                worksList?.false_works?.map((work, index) => (
+              {volunteerWorksList?.loadingTrees?.length > 0 &&
+                volunteerWorksList?.loadingTrees?.map((work, index) => (
+                  <WorkItem deleted={false} key={index} data={work} />
+                ))}
+            </div>
+          </div>
+          <div className="w-full flex justify-center">
+            <div
+              className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${value}`}
+            >
+              {volunteerWorksList?.loadingWorks?.length > 0 &&
+                volunteerWorksList?.loadingWorks?.map((work, index) => (
                   <WorkItem deleted={false} key={index} data={work} />
                 ))}
             </div>
@@ -115,7 +129,7 @@ const Works = () => {
         </>
       )}
 
-      {tag === 1 && (
+      {/* {tag === 1 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
             {" "}
@@ -126,36 +140,47 @@ const Works = () => {
             <div
               className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${value}`}
             >
-              {worksList?.pindding_works?.length > 0 &&
-                worksList?.pindding_works?.map((work, index) => (
+              {volunteerWorksList?.pindding_works?.length > 0 &&
+                volunteerWorksList?.pindding_works?.map((work, index) => (
                   <WorkItem deleted={false} key={index} data={work} />
                 ))}
             </div>
           </div>
         </>
-      )}
+      )} */}
 
       {tag === 0 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
             {" "}
-            هنا تظهر لك الأعمال الغير منجزة و الغير مسندة الى اي متطوع و التي
-            يمكنك حذفها
+            هنا تظهر لك الأعمال الغير منجزة و الأشجار الغير مزروعة الغير مسندة الى المتطوع بعد وفي انتظار الموافقة عليها
           </p>
           <div className="w-full flex justify-center">
             <div
               className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${value}`}
             >
-              {worksList?.waiting_works?.length > 0 &&
-                worksList?.waiting_works?.map((work, index) => (
+              {volunteerWorksList?.trees_Que?.length > 0 &&
+                volunteerWorksList?.trees_Que?.map((work, index) => (
+                  <WorkItem deleted={true} key={index} data={work} />
+                ))}
+            </div>
+          </div>
+          <div className="w-full flex justify-center">
+            <div
+              className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${value}`}
+            >
+              {volunteerWorksList?.works_Que?.length > 0 &&
+                volunteerWorksList?.works_Que?.map((work, index) => (
                   <WorkItem deleted={true} key={index} data={work} />
                 ))}
             </div>
           </div>
         </>
       )}
+
+
     </div>
   );
 };
 
-export default Works;
+export default VolunteerWorks;

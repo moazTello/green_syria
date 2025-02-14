@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CategoryItem from "../components/CategoryItem";
 import { BiSolidMessageCheck } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import useStore from "../zustand/useStore";
 const Categories = () => {
+  const { fetchCategoriesList, categoriesList } = useStore();
+  useEffect(() => {
+    fetchCategoriesList();
+    }, [fetchCategoriesList]);
   const value = 4;
   return (
     <div className="bg-gradient-to-t from-[#33663b] to-[#55B063] min-h-[100vh] flex flex-col items-center">
@@ -20,21 +25,17 @@ const Categories = () => {
           التطبيق لدى المستخدمين
         </p>
       </div>
-      <Link className="my-2 md:my-5 bg-slate-50 w-[80%] text-center rounded-lg p-2 md:p-4 text-sm md:text-lg text-green-600 hover:bg-yellow-50">
+      <Link to="/green_syria/dashboard/categories/addCategory" className="my-2 md:my-5 bg-slate-50 w-[80%] text-center rounded-lg p-2 md:p-4 text-sm md:text-lg text-green-600 hover:bg-yellow-50">
         إضافة نوع مقالات جديد 
       </Link>
       <div className="w-full flex justify-center">
         <div
           className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${value}`}
         >
-          <CategoryItem />
-          <CategoryItem />
-          <CategoryItem />
-          <CategoryItem />
-          <CategoryItem />
-          <CategoryItem />
-          <CategoryItem />
-          <CategoryItem />
+          {categoriesList?.length > 0 &&
+            categoriesList?.map((category, index) => (
+              <CategoryItem key={index} data={category} />
+            ))}
         </div>
       </div>
     </div>

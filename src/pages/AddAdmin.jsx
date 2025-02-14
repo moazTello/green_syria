@@ -114,16 +114,16 @@ const AddAdmin = () => {
           alt="logo"
           className="rounded-[5%] w-[50%] md:w-[80%] mt-4 md:my-0"
         />
-        <p className="text-right fontBold w-[80%] md:w-[90%] mt-5 text-white text-sm md:text-lg">
+        <p className="text-right fontReg w-[80%] md:w-[90%] mt-5 text-white text-sm md:text-lg">
           هنا يمكنك إضافة آدمن رئيسي او مؤسسة (آدمن مساعد) قم بتفعيل خيار آدمن
           رئيسي ليستطيع من الإطلاع على الزيارات و إضافة آدمن، من المفضل ان تكون
-          قياسات الصورة المرفقة للمتطوع بقياس العرض ضعفي الطول لتتناسب مع قياس
+          قياسات الصورة المرفقة للمتطوع بقياس العرض يساوي الطول لتتناسب مع قياس
           واجهات التطبيق
         </p>
         <img
-          src={images.explain_image_4}
+          src={images.explain_image_3}
           alt="logo"
-          className="rounded-[5%] w-[50%] md:w-[80%] my-4"
+          className="rounded-[5%] w-[50%] md:w-[80%] mt-6 mb-4"
         />
       </div>
       <div className="w-full md:w-[50%] flex flex-col px-2 md:px-10 hover:shadow-3xl py-5 hover:shadow-yellow-50 justify-center items-center bg-[rgba(255,255,255,20%)] rounded-2xl">
@@ -183,6 +183,7 @@ const AddAdmin = () => {
               customStyleComponent="mr-2"
             />
             <InputField
+              type="number"
               headerText="رقم الجوال"
               error={errors?.phone?.message}
               register={register("phone", {

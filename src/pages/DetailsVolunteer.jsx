@@ -32,7 +32,7 @@ const DetailsVolunteer = () => {
     >
       <div className="w-full md:w-[40%] md:m-10 flex flex-col justify-center items-center">
         <img
-          src={images.volunteer_2}
+          src={images.pink_tree}
           alt="logo"
           className="rounded-[5%] w-[50%] md:w-[80%] mt-4 md:my-0"
         />

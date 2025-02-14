@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { images } from "../constants";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -8,7 +8,7 @@ import CustomButton from "../components/fields/CustomButton";
 import ImageUploader from "../components/fields/ImageUploader";
 import imageCompression from "browser-image-compression";
 
-const AddEvent = () => {
+const AddTree = () => {
   const {
     register,
     handleSubmit,
@@ -16,7 +16,8 @@ const AddEvent = () => {
     setValue,
     watch,
   } = useForm();
-  const { isLoading, addEvent } = useStore();
+  const { plantstoreid } = useParams();
+  const { isLoading, addPlantStoreTree } = useStore();
   const navigate = useNavigate();
   const onSubmit = async (data) => {
     const compressionOptions = {
@@ -25,14 +26,9 @@ const AddEvent = () => {
       useWebWorker: true,
     };
     const formData = new FormData();
-    formData.append("title", data.title);
-    formData.append("orgName", data.orgName);
-    formData.append("address", data.address);
+    formData.append("name", data.name);
     formData.append("desc", data.desc);
-    formData.append("startDate", data.startDate);
-    formData.append("endDate", data.endDate);
-    formData.append("orgOwnerName", data.orgOwnerName);
-
+    formData.append("plantsStoreName","moaz");
     if (data?.Images && data.Images.length > 0) {
       toast.success("يتم الآن ضغط الصور");
       const imageArray = Array.isArray(data.Images)
@@ -51,9 +47,9 @@ const AddEvent = () => {
       }
     }
     try {
-      const response = await addEvent(formData);
+      const response = await addPlantStoreTree(formData, plantstoreid);
       if (response?.status === 201) {
-        toast.success("تم إضافة حدث جديد بنجاح");
+        toast.success("تم إضافة شجرة جديدة بنجاح");
         navigate("/green_syria/dashboard");
       }
     } catch (error) {
@@ -67,77 +63,28 @@ const AddEvent = () => {
     >
       <div className="w-full md:w-[40%] md:m-10 flex flex-col justify-center items-center">
         <img
-          src={images.desk_image}
+          src={images.small_tree}
           alt="logo"
           className="rounded-[5%] w-[50%] md:w-[80%] mb-5 md:mb-4"
         />
-        <p className="text-right fontReg w-[80%] md:w-[90%] my-10 text-white text-sm md:text-lg">
-          هنا يمكنك إضافة حدث جديد، سيُلغى الحدث تلقائياً عند انتهاء مدته، من
-          المفضل ان تكون قياسات الصورة المرفقة للحدث بقياس العرض ضعفي الطول
-          لتتناسب مع قياس واجهات التطبيق
+        {/* <p className="text-right fontReg w-[80%] md:w-[90%] my-10 text-white text-sm md:text-lg">
         </p>
         <img
           src={images.explain_image}
           alt="logo"
           className="rounded-[5%] w-[50%] md:w-[80%] my-4 md:my-0"
-        />
+        /> */}
       </div>
       <div className="w-full md:w-[50%] flex flex-col px-2 md:px-10 hover:shadow-3xl py-5 hover:shadow-yellow-50 justify-center items-center bg-[rgba(255,255,255,20%)] rounded-2xl">
         <p className="fontBold text-white text-lg md:text-2xl my-6">
-          إضافة حدث جديد
+          إضافة شجرة جديدة
         </p>
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-          <div className="w-full flex items-start justify-center">
-            <InputField
-              headerText="اسم منظم الحدث"
-              error={errors?.orgOwnerName?.message}
-              register={register("orgOwnerName", {
-                required: "اسم منظم الحدث مطلوب",
-              })}
-              isRequired={true}
-              customStyleComponent="mr-2"
-            />
-            <InputField
-              headerText="اسم الحدث"
-              error={errors?.title?.message}
-              register={register("title", {
-                required: "اسم الحدث مطلوب",
-              })}
-              isRequired={true}
-            />
-          </div>
           <InputField
-            headerText="اسم المنظمة"
-            error={errors?.orgName?.message}
-            register={register("orgName", {
-              required: "اسم المنظمة مطلوب",
-            })}
-            isRequired={true}
-            customStyleComponent="mr-2"
-          />
-          <InputField
-            headerText="العنوان"
-            error={errors?.address?.message}
-            register={register("address", {
-              required: "العنوان مطلوب",
-            })}
-            isRequired={true}
-          />
-          <InputField
-            type="datetime-local"
-            headerText="بداية الحدث"
-            error={errors?.startDate?.message}
-            register={register("startDate", {
-              required: "بداية الحدث مطلوب",
-            })}
-            isRequired={true}
-          />
-          <InputField
-            type="datetime-local"
-            headerText="نهاية الحدث "
-            error={errors?.endDate?.message}
-            register={register("endDate", {
-              required: "نهاية الحدث مطلوب",
+            headerText="نوع الشجرة"
+            error={errors?.name?.message}
+            register={register("name", {
+              required: "نوع الشجرة مطلوب",
             })}
             isRequired={true}
             customStyleComponent="mr-2"
@@ -167,4 +114,4 @@ const AddEvent = () => {
   );
 };
 
-export default AddEvent;
+export default AddTree;

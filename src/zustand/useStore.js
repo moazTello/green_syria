@@ -19,37 +19,40 @@ const useStore = create((set) => ({
   error: null,
   setError: (error) => set({ error }),
 
-  OrganizData: JSON.parse(sessionStorage.getItem("organization")) || [],
-  setOrganizData: (OrganizData) => {
-    JSON.parse(sessionStorage.getItem("user")).role === "AssistentAdmin" &&
-      sessionStorage.setItem("organization", JSON.stringify(OrganizData));
-    set({ OrganizData });
-  },
-
-  logoutMaster: async () => {
+  logoutAdmin: async () => {
     set({ isLoading: true, error: null });
     try {
-      await axiosPrivate.get("/api/masterAdmin/logout", {
+      const response = await axiosPrivate.get("/api/logout", {
         headers: {
           Authorization: `Bearer ${useStore.getState().token}`,
         },
       });
       set({ isLoading: false });
+      console.log(response);
+      return response;
     } catch (error) {
       console.log(error);
       set({ error: error.message, isLoading: false });
     }
   },
 
-  logoutOrg: async () => {
+  //-------------------------------------------------------------------------------------Admin
+  AdminsList: [],
+  setAdminsList: (AdminsList) => set({ AdminsList }),
+
+  fetchAdminsList: async () => {
     set({ isLoading: true, error: null });
     try {
-      await axiosPrivate.get("/api/organization/logout", {
-        headers: {
-          Authorization: `Bearer ${useStore.getState().token}`,
-        },
-      });
-      set({ isLoading: false });
+      const response = await axiosPrivate.get(
+        "api/admin/getAllAdminAss?page=1&per_page=50",
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+          },
+        }
+      );
+      console.log(response);
+      set({ AdminsList: response.data.allAdminAss, isLoading: false });
     } catch (error) {
       console.log(error);
       set({ error: error.message, isLoading: false });
@@ -98,26 +101,73 @@ const useStore = create((set) => ({
     }
   },
 
-
-  addVolunteer: async (data) => {
+  EditAdmin: async (data, id) => {
     set({ isLoading: true, error: null });
     try {
-      const response = await DataTransfer.post("/api/admin/createVolunteer", data, {
-        headers: {
-          Authorization: `Bearer ${useStore.getState().token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await DataTransfer.post(
+        `/api/admin/updateAdmin/${id}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+            // 'Content-Type': 'application/json',
+            "Content-Type": "multipart/form-data",
+            _method: "put",
+          },
+        }
+      );
       set({ isLoading: false });
-      console.log(response);
       return response;
     } catch (error) {
       console.log(error);
       set({ error: error.message, isLoading: false });
-      return error;
     }
   },
 
+  EditAdminAss: async (data, id) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await DataTransfer.post(
+        `/api/admin/updateAssAdmin/${id}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+            // 'Content-Type': 'application/json',
+            "Content-Type": "multipart/form-data",
+            _method: "put",
+          },
+        }
+      );
+      set({ isLoading: false });
+      return response;
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+    }
+  },
+
+  DeleteAdmin: async (id) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await DataTransfer.delete(
+        `/api/admin/deleteAssAdmin/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      set({ isLoading: false });
+      return response;
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+    }
+  },
+
+  //-------------------------------------------------------------------------------------Volunteer
   volunteersList: [],
   setVolunteersList: (volunteersList) => set({ volunteersList }),
 
@@ -133,45 +183,26 @@ const useStore = create((set) => ({
         }
       );
       set({ volunteersList: response.data.yesVolunteers, isLoading: false });
-      console.log(response)
+      console.log(response);
     } catch (error) {
       console.log(error);
       set({ error: error.message, isLoading: false });
     }
   },
 
-
-  plantStoresList: [],
-  setPlantStoresList: (plantStoresList) => set({ plantStoresList }),
-  
-  fetchPlantStoresList: async () => {
+  addVolunteer: async (data) => {
     set({ isLoading: true, error: null });
     try {
-      const response = await axiosPrivate.get(
-        "api/admin/getAllPlanstores?page=1&per_page=50",
+      const response = await DataTransfer.post(
+        "/api/admin/createVolunteer",
+        data,
         {
           headers: {
             Authorization: `Bearer ${useStore.getState().token}`,
+            "Content-Type": "multipart/form-data",
           },
         }
       );
-      console.log(response)
-      set({ plantStoresList: response.data.yesPlan, isLoading: false });
-    } catch (error) {
-      console.log(error);
-      set({ error: error.message, isLoading: false });
-    }
-  },
-
-  addPlantStore: async (data) => {
-    set({ isLoading: true, error: null });
-    try {
-      const response = await DataTransfer.post("/api/admin/createPlanstore", data, {
-        headers: {
-          Authorization: `Bearer ${useStore.getState().token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
       set({ isLoading: false });
       console.log(response);
       return response;
@@ -179,6 +210,29 @@ const useStore = create((set) => ({
       console.log(error);
       set({ error: error.message, isLoading: false });
       return error;
+    }
+  },
+
+  EditVolunteerApi: async (data, id) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await DataTransfer.post(
+        `/api/admin/updateVolunteer/${id}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+            // 'Content-Type': 'application/json',
+            "Content-Type": "multipart/form-data",
+            _method: "put",
+          },
+        }
+      );
+      set({ isLoading: false });
+      return response;
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
     }
   },
 
@@ -201,6 +255,98 @@ const useStore = create((set) => ({
       set({ error: error.message, isLoading: false });
     }
   },
+
+  volunteerWorks: [],
+  setVolunteerWorksList: (volunteerWorks) => set({ volunteerWorks }),
+
+  fetchVolunteerWorksList: async (id) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axiosPrivate.get(
+        `api/admin/getvolunteerWorks/${id}?page=1&per_page=50`,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+          },
+        }
+      );
+      console.log(response);
+      set({ volunteerWorks: response.data, isLoading: false });
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+    }
+  },
+
+  //------------------------------------------------------------------------------------PlantStore
+  plantStoresList: [],
+  setPlantStoresList: (plantStoresList) => set({ plantStoresList }),
+
+  fetchPlantStoresList: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axiosPrivate.get(
+        "api/admin/getAllPlanstores?page=1&per_page=50",
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+          },
+        }
+      );
+      console.log(response);
+      set({ plantStoresList: response.data.yesPlan, isLoading: false });
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+    }
+  },
+
+  addPlantStore: async (data) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await DataTransfer.post(
+        "/api/admin/createPlanstore",
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      set({ isLoading: false });
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+      return error;
+    }
+  },
+
+  EditPlantStoreApi: async (data, id) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await DataTransfer.post(
+        `/api/admin/updatePlanstore/${id}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+            // 'Content-Type': 'application/json',
+            "Content-Type": "multipart/form-data",
+            _method: "put",
+          },
+        }
+      );
+      set({ isLoading: false });
+      return response;
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+    }
+  },
+
   DeletePlantStore: async (id) => {
     set({ isLoading: true, error: null });
     try {
@@ -221,6 +367,25 @@ const useStore = create((set) => ({
     }
   },
 
+  //-------------------------------------------------------------------------------------Events
+  eventsList: [],
+  setEventsList: (eventsList) => set({ eventsList }),
+
+  fetchEventsList: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axiosPrivate.get("api/admin/getEvents", {
+        headers: {
+          Authorization: `Bearer ${useStore.getState().token}`,
+        },
+      });
+      console.log(response);
+      set({ eventsList: response.data.allEvents, isLoading: false });
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+    }
+  },
 
   addEvent: async (data) => {
     set({ isLoading: true, error: null });
@@ -240,27 +405,7 @@ const useStore = create((set) => ({
       return error;
     }
   },
-  eventsList: [],
-  setEventsList: (eventsList) => set({ eventsList }),
-  
-  fetchEventsList: async () => {
-    set({ isLoading: true, error: null });
-    try {
-      const response = await axiosPrivate.get(
-        "api/admin/getEvents",
-        {
-          headers: {
-            Authorization: `Bearer ${useStore.getState().token}`,
-          },
-        }
-      );
-      console.log(response)
-      set({ eventsList: response.data.allEvents, isLoading: false });
-    } catch (error) {
-      console.log(error);
-      set({ error: error.message, isLoading: false });
-    }
-  },
+
   DeleteEvent: async (id) => {
     set({ isLoading: true, error: null });
     try {
@@ -280,8 +425,9 @@ const useStore = create((set) => ({
       set({ error: error.message, isLoading: false });
     }
   },
-  
-  fetchElement: async (id,type) => {
+
+  //-------------------------------------------------------------------------------------all
+  fetchElement: async (id, type) => {
     set({ isLoading: true, error: null });
     try {
       const response = await axiosPrivate.get(
@@ -292,26 +438,120 @@ const useStore = create((set) => ({
           },
         }
       );
-      console.log(response)
+      console.log(response);
       set({ isLoading: false });
-      return response.data
+      return response.data;
     } catch (error) {
       console.log(error);
       set({ error: error.message, isLoading: false });
     }
   },
 
-  EditPlantStoreApi: async (data, id) => {
+  //-------------------------------------------------------------------------------------trees
+  plantStoreTreesList: [],
+  setPlantStoreTreesList: (plantStoreTreesList) => set({ plantStoreTreesList }),
+
+  fetchPlantStoreTreesList: async (id) => {
     set({ isLoading: true, error: null });
     try {
-      const response = await DataTransfer.post(`/api/admin/updatePlanstore/${id}`, data, {
+      const response = await axiosPrivate.get(
+        `api/admin/getPlanstoreTrees/${id}?page=1&per_page=50`,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+          },
+        }
+      );
+      console.log(response);
+      set({ plantStoreTreesList: response.data, isLoading: false });
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+    }
+  },
+
+  addPlantStoreTree: async (data, id) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await DataTransfer.post(
+        `/api/admin/createTree/${id}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      set({ isLoading: false });
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+      return error;
+    }
+  },
+
+  //-------------------------------------------------------------------------------------Categories
+
+  categoriesList: [],
+  setCategoriesList: (categoriesList) => set({ categoriesList }),
+
+  fetchCategoriesList: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axiosPrivate.get(`api/admin/getCategories`, {
         headers: {
           Authorization: `Bearer ${useStore.getState().token}`,
-          // 'Content-Type': 'application/json',
-          "Content-Type": "multipart/form-data",
-          _method: "put",
         },
       });
+      console.log(response);
+      set({ categoriesList: response.data.allCategories, isLoading: false });
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+    }
+  },
+
+  addCategory: async (data) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await DataTransfer.post(
+        `/api/admin/createcategory`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      set({ isLoading: false });
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+      return error;
+    }
+  },
+
+  EditCategory: async (data, id) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await DataTransfer.post(
+        `/api/admin/updateCategory/${id}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+            // 'Content-Type': 'application/json',
+            "Content-Type": "multipart/form-data",
+            _method: "put",
+          },
+        }
+      );
       set({ isLoading: false });
       return response;
     } catch (error) {
@@ -320,17 +560,18 @@ const useStore = create((set) => ({
     }
   },
 
-  EditVolunteerApi: async (data, id) => {
+  DeleteCategory: async (id) => {
     set({ isLoading: true, error: null });
     try {
-      const response = await DataTransfer.post(`/api/admin/updateVolunteer/${id}`, data, {
-        headers: {
-          Authorization: `Bearer ${useStore.getState().token}`,
-          // 'Content-Type': 'application/json',
-          "Content-Type": "multipart/form-data",
-          _method: "put",
-        },
-      });
+      const response = await DataTransfer.delete(
+        `/api/admin/deleteCategory/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       set({ isLoading: false });
       return response;
     } catch (error) {
@@ -339,6 +580,154 @@ const useStore = create((set) => ({
     }
   },
 
+  //-------------------------------------------------------------------------------------Works
+  worksList: [],
+  setWorksList: (worksList) => set({ worksList }),
+
+  fetchWorksList: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axiosPrivate.get(
+        `api/admin/getWorks?page=1&per_page=50`,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+          },
+        }
+      );
+      console.log(response);
+      set({ worksList: response.data, isLoading: false });
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+    }
+  },
+  // DeleteWork: async (id) => {
+  //   set({ isLoading: true, error: null });
+  //   try {
+  //     const response = await DataTransfer.delete(
+  //       `/api/admin/deleteCategory/${id}`,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${useStore.getState().token}`,
+  //           "Content-Type": "multipart/form-data",
+  //         },
+  //       }
+  //     );
+  //     set({ isLoading: false });
+  //     return response;
+  //   } catch (error) {
+  //     console.log(error);
+  //     set({ error: error.message, isLoading: false });
+  //   }
+  // },
+  // EditWork: async (data, id) => {
+  //   set({ isLoading: true, error: null });
+  //   try {
+  //     const response = await DataTransfer.post(`/api/admin/updateCategory/${id}`, data, {
+  //       headers: {
+  //         Authorization: `Bearer ${useStore.getState().token}`,
+  //         // 'Content-Type': 'application/json',
+  //         "Content-Type": "multipart/form-data",
+  //         _method: "put",
+  //       },
+  //     });
+  //     set({ isLoading: false });
+  //     return response;
+  //   } catch (error) {
+  //     console.log(error);
+  //     set({ error: error.message, isLoading: false });
+  //   }
+  // },
+
+  //-------------------------------------------------------------------------------------Articles
+  articlesList: [],
+  setArticlesList: (articlesList) => set({ articlesList }),
+
+  fetchArticlesList: async (id) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axiosPrivate.get(
+        `api/admin/getArticlesOfCategory/${id}?page=1&per_page=50`,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+          },
+        }
+      );
+      console.log(response);
+      set({ articlesList: response.data.allArticles, isLoading: false });
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+    }
+  },
+
+  addArticle: async (data, id) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await DataTransfer.post(
+        `/api/admin/createArticles/${id}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      set({ isLoading: false });
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+      return error;
+    }
+  },
+
+  // EditArticle: async (data, id) => {
+  //   set({ isLoading: true, error: null });
+  //   try {
+  //     const response = await DataTransfer.post(
+  //       `/api/admin/updateCategory/${id}`,
+  //       data,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${useStore.getState().token}`,
+  //           // 'Content-Type': 'application/json',
+  //           "Content-Type": "multipart/form-data",
+  //           _method: "put",
+  //         },
+  //       }
+  //     );
+  //     set({ isLoading: false });
+  //     return response;
+  //   } catch (error) {
+  //     console.log(error);
+  //     set({ error: error.message, isLoading: false });
+  //   }
+  // },
+
+  DeleteArticle: async (id) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await DataTransfer.delete(
+        `/api/admin/deleteArticles/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      set({ isLoading: false });
+      return response;
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+    }
+  },
 }));
 
 export default useStore;

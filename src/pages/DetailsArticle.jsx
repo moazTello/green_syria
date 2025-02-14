@@ -1,90 +1,46 @@
 import { useParams } from "react-router-dom";
-import { images } from "../constants";
 import { useForm } from "react-hook-form";
 import InputField from "../components/fields/InputField";
 import useStore from "../zustand/useStore";
+import ImageUploader from "../components/fields/ImageUploader";
 import { useEffect } from "react";
-const EventDetails = () => {
-  const { eventid } = useParams();
-  const {
-    register,
-    setValue,
-    watch,
-  } = useForm();
+import moment from "moment";
+const DetailsArticle = () => {
+  const { articleid } = useParams();
+  const { register, setValue, watch } = useForm();
   const { fetchElement } = useStore();
   useEffect(() => {
     const fetch = async () => {
-      const response = await fetchElement(eventid, "event");
+      const response = await fetchElement(articleid, "art");
       if (!response) {
         return;
       }
       setValue("title", response.title);
-      setValue("startDate", response.startDate);
-      setValue("endDate", response.endDate);
-      setValue("address", response.address);
-      setValue("orgName", response.orgName);
       setValue("desc", response.desc);
-      setValue("orgOwnerName", response.orgOwnerName);
-      setValue("LogoImage", response.logo);
+      setValue("createdAt", moment(response.createdAt).format("YYYY-MM-DDTHH:mm:ss.SSS"));
       let imar = response?.images?.map((item) => item.img);
       setValue("Images", imar);
     };
     fetch();
-  }, [fetchElement, eventid, setValue]);
+  }, [fetchElement, articleid, setValue]);
   return (
     <div
-      className={`bg-gradient-to-t from-[#33663b] to-[#55B063] min-h-[100vh] w-full flex flex-col md:flex-row md:justify-center items-center py-8`}
+      className={`bg-gradient-to-t from-[#33663b] to-[#55B063] min-h-[100vh] w-full flex flex-col md:flex-row-reverse md:justify-center items-start py-8`}
     >
-      <div className="w-full md:w-[40%] md:m-10 flex flex-col justify-center items-center">
-        <img
-          src={images.pink_tree}
-          alt="logo"
-          className="rounded-[5%] w-[50%] md:w-[80%] mb-8 md:mt-0"
-        />
-        <p className="text-right fontBold w-[80%] md:w-[90%] mb-5 text-white text-sm md:text-lg">
-          تظهر لك تفاصيل الحدث، الحدث سيلغى تلقائياً عند انقطاع مدة الحدث، يمكنك
-          حذف الحدث و لا يمكنك تعديله
-        </p>
-      </div>
       <div className="w-full md:w-[50%] flex flex-col px-2 md:px-10 hover:shadow-3xl py-5 hover:shadow-yellow-50 justify-center items-center bg-[rgba(255,255,255,20%)] rounded-2xl">
         <p className="fontBold text-white text-lg md:text-2xl my-6">
-          تفاصيل الحدث
+          تفاصيل المقال
         </p>
         <form className="w-full">
-          <div className="w-full flex items-start justify-center">
-            <InputField
-              headerText="اسم منظم الحدث"
-              register={register("orgOwnerName")}
-              disable={true}
-              customStyleComponent="mr-2"
-            />
-            <InputField
-              headerText="اسم الحدث"
-              register={register("title")}
-              disable={true}
-            />
-          </div>
           <InputField
-            headerText="اسم المنظمة"
-            register={register("orgName")}
+            headerText="عنوان المقال"
+            register={register("title")}
             disable={true}
           />
           <InputField
             type="datetime-local"
-            headerText="بداية الحدث"
-            register={register("startDate")}
-            disable={true}
-          />
-          <InputField
-            type="datetime-local"
-            headerText="نهاية الحدث "
-            register={register("endDate")}
-            disable={true}
-          />
-
-          <InputField
-            headerText="العنوان"
-            register={register("address")}
+            headerText="تاريخ الانشاء"
+            register={register("createdAt")}
             disable={true}
           />
           <textarea
@@ -116,10 +72,16 @@ const EventDetails = () => {
               </div>
             </div>
           )}
+          <ImageUploader
+            register={register}
+            watch={watch}
+            setValue={setValue}
+            details={true}
+          />
         </form>
       </div>
     </div>
   );
 };
 
-export default EventDetails;
+export default DetailsArticle;

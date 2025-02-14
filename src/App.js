@@ -24,6 +24,13 @@ import EventDetails from "./pages/EventDetails";
 import DetailsPlantStore from "./pages/DetailsPlantStore";
 import EditPlantStore from "./pages/EditPlantStore";
 import DetailsVolunteer from "./pages/DetailsVolunteer";
+import AddCategory from "./pages/AddCategory";
+import DetailsInstitution from "./pages/DetailsInstitution";
+import PlantStoreTrees from "./pages/PlantStoreTrees";
+import AddTree from "./pages/AddTree";
+import AddArticle from "./pages/AddArticle";
+import DetailsArticle from "./pages/DetailsArticle";
+import VolunteerWorks from "./pages/VolunteerWorks";
 
 function App() {
   return (
@@ -64,7 +71,7 @@ function App() {
             }
           />
 
-<Route path="events">
+          <Route path="events">
             <Route
               index
               element={
@@ -90,7 +97,6 @@ function App() {
               }
             />
           </Route>
-
 
           <Route path="plant_stores">
             <Route
@@ -125,6 +131,24 @@ function App() {
                 </PrivateRoute>
               }
             />
+            <Route path="tree/:plantstoreid">
+              <Route
+                index
+                element={
+                  <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                    <PlantStoreTrees />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="addtree"
+                element={
+                  <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                    <AddTree />
+                  </PrivateRoute>
+                }
+              />
+            </Route>
           </Route>
           <Route
             path="join_requests"
@@ -142,6 +166,7 @@ function App() {
               </PrivateRoute>
             }
           />
+
           <Route path="volunteers">
             <Route
               index
@@ -167,11 +192,19 @@ function App() {
                 </PrivateRoute>
               }
             />
-             <Route
+            <Route
               path="edit/:volid"
               element={
                 <PrivateRoute allowedRoles={["adminAss", "admin"]}>
                   <EditVolunteer />
+                </PrivateRoute>
+              }
+            />
+             <Route
+              path="works/:volid"
+              element={
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                  <VolunteerWorks />
                 </PrivateRoute>
               }
             />
@@ -184,14 +217,25 @@ function App() {
               </PrivateRoute>
             }
           /> */}
-          <Route
-            path="institutions"
-            element={
-              <PrivateRoute allowedRoles={["adminAss", "admin"]}>
-                <Admins />
-              </PrivateRoute>
-            }
-          />
+          <Route path="institutions">
+            <Route
+              index
+              element={
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                  <Admins />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path=":institutionid"
+              element={
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                  <DetailsInstitution />
+                </PrivateRoute>
+              }
+            />
+          </Route>
+
           <Route path="categories">
             <Route
               index
@@ -205,75 +249,38 @@ function App() {
               path="addcategory"
               element={
                 <PrivateRoute allowedRoles={["adminAss", "admin"]}>
-                  {/* <AddProject /> */}
+                  <AddCategory />
                 </PrivateRoute>
               }
             />
-            <Route
-              path=":category"
-              element={
-                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
-                  <Category />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="projectdetails/:projid"
-              element={
-                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
-                  {/* <ProjectDetails /> */}
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="projectdetails/:projid/editProject"
-              element={
-                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
-                  {/* <EditProject /> */}
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="projectdetails/:projid/suggestions"
-              element={
-                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
-                  {/* <Suggestions /> */}
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="projectdetails/:projid/comments"
-              element={
-                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
-                  {/* <Comments /> */}
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="projectdetails/:projid/comments/:actid"
-              element={
-                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
-                  {/* <CommentsAct /> */}
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="projectdetails/:projid/openions"
-              element={
-                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
-                  {/* <Openions /> */}
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="projectdetails/:projid/openiondetails/:opid"
-              element={
-                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
-                  {/* <OpenionDetails /> */}
-                </PrivateRoute>
-              }
-            />
+            <Route path=":categoryid">
+              <Route
+                index
+                element={
+                  <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                    <Category />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="addArticle"
+                element={
+                  <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                    <AddArticle />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="details/:articleid"
+                element={
+                  <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                    <DetailsArticle />
+                  </PrivateRoute>
+                }
+              />
+            </Route>
           </Route>
+
         </Route>
       </Routes>
       <Toaster />
