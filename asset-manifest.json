@@ -1,16 +1,19 @@
 {
   "files": {
-    "main.css": "/green_syria/static/css/main.db4bb22b.css",
-    "main.js": "/green_syria/static/js/main.aa6a2ad9.js",
-    "static/media/edit_plant_store.png": "/green_syria/static/media/edit_plant_store.3ee2ca3548143784de1d.png",
-    "static/media/plant_store.png": "/green_syria/static/media/plant_store.8e59a22257007f598cf5.png",
-    "static/media/pink_tree.png": "/green_syria/static/media/pink_tree.a48d37051203b24385e4.png",
-    "static/media/orange_tree.png": "/green_syria/static/media/orange_tree.c8a8ce625b8448a8b3df.png",
+    "main.css": "/green_syria/static/css/main.47de9fff.css",
+    "main.js": "/green_syria/static/js/main.7aab8cde.js",
     "static/media/explain_admin.svg": "/green_syria/static/media/explain_admin.1eeda280bef98768db85f3b1f3b02c17.svg",
     "static/media/plant_store_2.svg": "/green_syria/static/media/plant_store_2.2068df6696bbead1049909a037b5dab8.svg",
+    "static/media/small_tree.png": "/green_syria/static/media/small_tree.434cb91f3eec20acf14a.png",
+    "static/media/edit_plant_store.png": "/green_syria/static/media/edit_plant_store.2a83dfef22ba672e3553.png",
+    "static/media/plant_store.png": "/green_syria/static/media/plant_store.d2918fdcabc28a9e74fb.png",
+    "static/media/orange_tree.png": "/green_syria/static/media/orange_tree.05ac2b32c50dbaf9a509.png",
     "static/media/plant_2.png": "/green_syria/static/media/plant_2.f9c2bfee38b5b7e59925.png",
     "static/media/volunteer_add.svg": "/green_syria/static/media/volunteer_add.b56af35ceff6d98119cf63cecd799829.svg",
+    "static/media/pink_tree.png": "/green_syria/static/media/pink_tree.574a237dccf6d5438663.png",
     "static/media/plant_store_add.svg": "/green_syria/static/media/plant_store_add.d47a59c413e88b15964eaa5f2d9a4451.svg",
+    "static/media/volunteer.png": "/green_syria/static/media/volunteer.7ddbbfc175c0ede25203.png",
+    "static/media/reading.png": "/green_syria/static/media/reading.380b9d9c8bcca725b60f.png",
     "static/media/explain_image.svg": "/green_syria/static/media/explain_image.6d5410a0d5c374e9f39ba19906b10bb2.svg",
     "static/media/desk_Image.svg": "/green_syria/static/media/desk_Image.5038686ecb931d46d35ac74e2a84c0a7.svg",
     "static/media/admin_image.svg": "/green_syria/static/media/admin_image.ec669930d9e5a2da8da289c129489857.svg",
@@ -22,11 +25,11 @@
     "static/media/volunteer_edit_back.svg": "/green_syria/static/media/volunteer_edit_back.292f25ce772f5f808608d66ddc9ccc9f.svg",
     "static/media/explain_volunteer.svg": "/green_syria/static/media/explain_volunteer.a90e6eb7e2ca7b4c2bc59aa73a737546.svg",
     "index.html": "/green_syria/index.html",
-    "main.db4bb22b.css.map": "/green_syria/static/css/main.db4bb22b.css.map",
-    "main.aa6a2ad9.js.map": "/green_syria/static/js/main.aa6a2ad9.js.map"
+    "main.47de9fff.css.map": "/green_syria/static/css/main.47de9fff.css.map",
+    "main.7aab8cde.js.map": "/green_syria/static/js/main.7aab8cde.js.map"
   },
   "entrypoints": [
-    "static/css/main.db4bb22b.css",
-    "static/js/main.aa6a2ad9.js"
+    "static/css/main.47de9fff.css",
+    "static/js/main.7aab8cde.js"
   ]
 }
