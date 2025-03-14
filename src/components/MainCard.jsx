@@ -50,6 +50,12 @@ const MainCard = ({ data, type }) => {
       }
     }
   };
+
+  const helper = () => {
+    if(type === "plantStore"){
+      sessionStorage.setItem("plantStore", JSON.stringify(data?.id));
+    }
+  }
   console.log(data)
   return (
     <div className="w-64 h-96 rounded-lg bg-gradient-to-t from-[#ffffff] to-[#f5f6dd] flex flex-col justify-start items-center m-2 md:my-4 float-right shadow-3xl shadow-gray-300">
@@ -125,6 +131,7 @@ const MainCard = ({ data, type }) => {
                     ? `/green_syria/dashboard/volunteers/works/${data.volun_id}`
                     : `/green_syria/dashboard/plant_stores/tree/${data.plan_id}`
                 } `}
+                onClick={helper}
               >
                 {type !== "volunteer" ? (
                   <RiTreeFill className="text-xl md:text-2xl mx-4 cursor-pointer" />

@@ -148,7 +148,7 @@ const Works = () => {
             >
               {worksList?.waiting_works?.length > 0 &&
                 worksList?.waiting_works?.map((work, index) => (
-                  <WorkItem deleted={true} key={index} data={work} />
+                  <WorkItem deleted={false} key={index} data={work} />
                 ))}
             </div>
           </div>

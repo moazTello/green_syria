@@ -6,16 +6,16 @@ import useStore from "../zustand/useStore";
 import toast from "react-hot-toast";
 import { FaLocationDot } from "react-icons/fa6";
 const WorkItem = ({ data, deleted }) => {
-  const { categoryid } = useParams();
-  const { DeleteArticle, fetchArticlesList } = useStore();
+  const { plantstoreid } = useParams();
+  const { DeletePlantStoreTree, fetchPlantStoreTreesList } = useStore();
   const handleDelete = async () => {
     // eslint-disable-next-line no-restricted-globals
-    const result = confirm("هل أنت متأكد من حذف المقال ؟");
+    const result = confirm("هل أنت متأكد من حذف الشجرة ؟");
     if (!result) return;
-    const response = await DeleteArticle(data?.id);
+    const response = await DeletePlantStoreTree(data?.id);
     if (response?.status === 200) {
-      await fetchArticlesList(categoryid);
-      toast.success("نم حذف المقال بنجاح ");
+      await fetchPlantStoreTreesList(plantstoreid);
+      toast.success("نم حذف الشجرة بنجاح ");
     }
   };
   return (

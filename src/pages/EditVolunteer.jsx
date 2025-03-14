@@ -91,7 +91,7 @@ const EditVolunteer = () => {
       const response = await EditVolunteerApi(formData, volid);
       console.log(response);
       if (response?.status === 200) {
-        toast.success("تم تعديل المشتل بنجاح");
+        toast.success("تم تعديل المتطوع بنجاح");
         navigate("/green_syria/dashboard/volunteers");
       }
       if (

@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { images } from "../constants";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -16,7 +16,6 @@ const AddTree = () => {
     setValue,
     watch,
   } = useForm();
-  const { plantstoreid } = useParams();
   const { isLoading, addPlantStoreTree } = useStore();
   const navigate = useNavigate();
   const onSubmit = async (data) => {
@@ -47,7 +46,9 @@ const AddTree = () => {
       }
     }
     try {
-      const response = await addPlantStoreTree(formData, plantstoreid);
+      const id = JSON.parse(sessionStorage.getItem("plantStore"))
+      if (!id) return; 
+      const response = await addPlantStoreTree(formData, id);
       if (response?.status === 201) {
         toast.success("تم إضافة شجرة جديدة بنجاح");
         navigate("/green_syria/dashboard");

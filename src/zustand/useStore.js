@@ -493,6 +493,26 @@ const useStore = create((set) => ({
     }
   },
 
+  DeletePlantStoreTree: async (id) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await DataTransfer.delete(
+        `/api/admin/deleteTree/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      set({ isLoading: false });
+      return response;
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+    }
+  },
+
   //-------------------------------------------------------------------------------------Categories
 
   categoriesList: [],

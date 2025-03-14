@@ -33,8 +33,6 @@ const PlantStoreTrees = () => {
       >
         إضافة شجرة
       </Link>
-
-
       <div className="flex fontReg text-sm md:text-lg items-center border-t-2 border-yellow-200 w-[90%] justify-center my-5">
         <button
           onClick={() => setTag(0)}
@@ -77,7 +75,6 @@ const PlantStoreTrees = () => {
           المنجزة
         </button>
       </div>
-
       {tag === 3 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
@@ -97,7 +94,6 @@ const PlantStoreTrees = () => {
           </div>
         </>
       )}
-
       {tag === 2 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
@@ -117,7 +113,6 @@ const PlantStoreTrees = () => {
           </div>
         </>
       )}
-
       {tag === 1 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
@@ -137,7 +132,6 @@ const PlantStoreTrees = () => {
           </div>
         </>
       )}
-
       {tag === 0 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
