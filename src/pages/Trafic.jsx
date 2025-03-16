@@ -121,19 +121,11 @@ const Trafic = () => {
       {
         title: "المستخدمين الجدد خلال شهر على التطبيق",
         subtitle: `الزيارات للسنة ${selectedYear ? selectedYear : ""}`,
-        // labels: traficYearData.labels,
-        labels: [
-          23, 34, 45, 56, 67, 78, 89, 90, 34, 67, 43, 98, 32, 34, 45, 67, 89,
-          87, 89, 54, 12, 45, 67, 78, 54, 67, 89, 87, 65, 43, 32,
-        ],
+        labels: traficYearData.labels,
         datasets: [
           {
             label: "المستخدمين الجدد",
-            data: [
-              23, 34, 45, 56, 67, 78, 89, 90, 34, 67, 43, 98, 32, 34, 45, 67,
-              89, 87, 89, 54, 12, 45, 67, 78, 54, 67, 89, 87, 65, 43, 32,
-            ],
-            // data: traficYearData.unique,
+            data: traficYearData.unique,
             borderColor: statisticsTypeColor,
             backgroundColor: statisticsTypeColorShadow,
             borderWidth: statisticsTypeWidth,
@@ -151,9 +143,9 @@ const Trafic = () => {
           {
             label: "الزيارات",
             data: traficYearData.total,
-            borderColor: "#EBBF36",
-            backgroundColor: "rgba(172, 187, 180, 0.2)",
-            borderWidth: 2,
+            borderColor: statisticsTypeColor,
+            backgroundColor: statisticsTypeColorShadow,
+            borderWidth: statisticsTypeWidth,
             tension: 0.3,
             fill: true,
           },
@@ -169,9 +161,9 @@ const Trafic = () => {
           {
             label: "المستخدمين الجدد",
             data: traficMonthData.unique,
-            borderColor: "#33663b",
-            backgroundColor: "rgba(12, 225, 120, 0.2)",
-            borderWidth: 2,
+            borderColor: statisticsTypeColor,
+            backgroundColor: statisticsTypeColorShadow,
+            borderWidth: statisticsTypeWidth,
             tension: 0.3,
             fill: true,
           },
@@ -188,9 +180,9 @@ const Trafic = () => {
           {
             label: "الزيارات",
             data: traficMonthData.total,
-            borderColor: "#EBBF36",
-            backgroundColor: "rgba(172, 187, 180, 0.2)",
-            borderWidth: 2,
+            borderColor: statisticsTypeColor,
+            backgroundColor: statisticsTypeColorShadow,
+            borderWidth: statisticsTypeWidth,
             tension: 0.3,
             fill: true,
           },
