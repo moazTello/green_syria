@@ -31,7 +31,8 @@ import AddTree from "./pages/AddTree";
 import AddArticle from "./pages/AddArticle";
 import DetailsArticle from "./pages/DetailsArticle";
 import VolunteerWorks from "./pages/VolunteerWorks";
-
+import DetailsPlantStoreWaiting from "./pages/DetailsPlantStoreWaiting";
+import DetailsVolunteerWaiting from "./pages/DetailsVolunteerWaiting";
 function App() {
   return (
     <>
@@ -150,14 +151,32 @@ function App() {
               />
             </Route>
           </Route>
-          <Route
-            path="join_requests"
-            element={
-              <PrivateRoute allowedRoles={["adminAss", "admin"]}>
-                <JoinRequests />
-              </PrivateRoute>
-            }
-          />
+          <Route path="join_requests">
+            <Route
+              index
+              element={
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                  <JoinRequests />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path=":waitingaccount"
+              element={
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                  <DetailsPlantStoreWaiting />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="volunteer/:waitingaccount"
+              element={
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                  <DetailsVolunteerWaiting />
+                </PrivateRoute>
+              }
+            />
+          </Route>
           <Route
             path="profile"
             element={
@@ -200,7 +219,7 @@ function App() {
                 </PrivateRoute>
               }
             />
-             <Route
+            <Route
               path="works/:volid"
               element={
                 <PrivateRoute allowedRoles={["adminAss", "admin"]}>
@@ -280,7 +299,6 @@ function App() {
               />
             </Route>
           </Route>
-
         </Route>
       </Routes>
       <Toaster />

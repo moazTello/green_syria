@@ -6,11 +6,12 @@ import WorkItem from "../components/WorkItem";
 
 const VolunteerWorks = () => {
   const { fetchVolunteerWorksList, volunteerWorksList } = useStore();
-  const {volid} = useParams();
-    const [tag, setTag] = useState(0);
+  const { volid } = useParams();
+  const [tag, setTag] = useState(0);
   useEffect(() => {
     fetchVolunteerWorksList(volid);
   }, [fetchVolunteerWorksList, volid]);
+  console.log(volunteerWorksList)
   const value = 4;
   return (
     <div className="bg-gradient-to-t from-[#33663b] to-[#55B063] min-h-[100vh] flex flex-col items-center">
@@ -27,7 +28,6 @@ const VolunteerWorks = () => {
           هنا يمكنك رؤية كافة الأعمال الخاصة بالمتطوع
         </p>
       </div>
-
       <div className="flex fontReg text-sm md:text-lg items-center border-t-2 border-yellow-200 w-[90%] justify-center my-5">
         <button
           onClick={() => setTag(0)}
@@ -70,7 +70,6 @@ const VolunteerWorks = () => {
           المنجزة
         </button>
       </div>
-
       {tag === 3 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
@@ -99,7 +98,6 @@ const VolunteerWorks = () => {
           </div>
         </>
       )}
-
       {tag === 2 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
@@ -128,7 +126,6 @@ const VolunteerWorks = () => {
           </div>
         </>
       )}
-
       {/* {tag === 1 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
@@ -153,14 +150,15 @@ const VolunteerWorks = () => {
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
             {" "}
-            هنا تظهر لك الأعمال الغير منجزة و الأشجار الغير مزروعة الغير مسندة الى المتطوع بعد وفي انتظار الموافقة عليها
+            هنا تظهر لك الأعمال الغير منجزة و الأشجار الغير مزروعة الغير مسندة
+            الى المتطوع بعد وفي انتظار الموافقة عليها
           </p>
           <div className="w-full flex justify-center">
             <div
               className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${value}`}
             >
-              {volunteerWorksList?.trees_Que?.length > 0 &&
-                volunteerWorksList?.trees_Que?.map((work, index) => (
+              {volunteerWorksList?.data?.trees_Que?.length > 0 &&
+                volunteerWorksList?.data?.trees_Que?.map((work, index) => (
                   <WorkItem deleted={true} key={index} data={work} />
                 ))}
             </div>
@@ -177,8 +175,6 @@ const VolunteerWorks = () => {
           </div>
         </>
       )}
-
-
     </div>
   );
 };

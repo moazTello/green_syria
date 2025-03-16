@@ -124,8 +124,8 @@ const PlantStoreTrees = () => {
             <div
               className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${value}`}
             >
-              {plantStoreTreesList?.pindding_trees?.length > 0 &&
-                plantStoreTreesList?.pindding_trees?.map((tree, index) => (
+              {plantStoreTreesList?.pinding_trees?.length > 0 &&
+                plantStoreTreesList?.pinding_trees?.map((tree, index) => (
                   <WorkItem deleted={false} key={index} data={tree} />
                 ))}
             </div>

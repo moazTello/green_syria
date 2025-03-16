@@ -256,8 +256,8 @@ const useStore = create((set) => ({
     }
   },
 
-  volunteerWorks: [],
-  setVolunteerWorksList: (volunteerWorks) => set({ volunteerWorks }),
+  volunteerWorksList: [],
+  setVolunteerWorksList: (volunteerWorksList) => set({ volunteerWorksList }),
 
   fetchVolunteerWorksList: async (id) => {
     set({ isLoading: true, error: null });
@@ -271,7 +271,29 @@ const useStore = create((set) => ({
         }
       );
       console.log(response);
-      set({ volunteerWorks: response.data, isLoading: false });
+      set({ volunteerWorksList: response.data, isLoading: false });
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+    }
+  },
+
+  volunteersWaitingList: [],
+  setVolunteersWaitingList: (volunteersWaitingList) => set({ volunteersWaitingList }),
+
+  fetchVolunteersWaitingList: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axiosPrivate.get(
+        "api/admin/getAllVolunteersWaiting?page=1&per_page=50",
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+          },
+        }
+      );
+      console.log(response);
+      set({ volunteersWaitingList: response?.data?.allVolunteers, isLoading: false });
     } catch (error) {
       console.log(error);
       set({ error: error.message, isLoading: false });
@@ -364,6 +386,51 @@ const useStore = create((set) => ({
     } catch (error) {
       console.log(error);
       set({ error: error.message, isLoading: false });
+    }
+  },
+
+  plantStoresWaitingList: [],
+  setPlantStoresWaitingList: (plantStoresWaitingList) => set({ plantStoresWaitingList }),
+
+  fetchPlantStoresWaitingList: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axiosPrivate.get(
+        "api/admin/getAllPlanstoresWaiting?page=1&per_page=50",
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+          },
+        }
+      );
+      console.log(response);
+      set({ plantStoresWaitingList: response?.data?.allPlanstores, isLoading: false });
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+    }
+  },
+
+  approvePlantStore: async (data) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await DataTransfer.post(
+        "/api/admin/approvePlanOrVolun",
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      set({ isLoading: false });
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+      return error;
     }
   },
 
@@ -743,6 +810,24 @@ const useStore = create((set) => ({
       );
       set({ isLoading: false });
       return response;
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+    }
+  },
+
+  trafics:null,
+  getTrafics: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await DataTransfer.get(`/api/admin/getTraffic`, {
+        headers: {
+          Authorization: `Bearer ${useStore.getState().token}`,
+          Accept: 'application/json',
+        },
+      });
+      console.log(response)
+      set({ trafics: response.data.traffic, isLoading: false });
     } catch (error) {
       console.log(error);
       set({ error: error.message, isLoading: false });
