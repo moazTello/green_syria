@@ -1,9 +1,8 @@
 {
   "files": {
-    "main.css": "/green_syria/static/css/main.6125cf39.css",
-    "main.js": "/green_syria/static/js/main.e49ab3b9.js",
+    "main.css": "/green_syria/static/css/main.bb196d18.css",
+    "main.js": "/green_syria/static/js/main.b26055f2.js",
     "static/media/explain_admin.svg": "/green_syria/static/media/explain_admin.1eeda280bef98768db85f3b1f3b02c17.svg",
-    "static/media/plant_store_2.svg": "/green_syria/static/media/plant_store_2.2068df6696bbead1049909a037b5dab8.svg",
     "static/media/small_tree.png": "/green_syria/static/media/small_tree.434cb91f3eec20acf14a.png",
     "static/media/edit_plant_store.png": "/green_syria/static/media/edit_plant_store.2a83dfef22ba672e3553.png",
     "static/media/plant_store.png": "/green_syria/static/media/plant_store.d2918fdcabc28a9e74fb.png",
@@ -18,18 +17,16 @@
     "static/media/desk_Image.svg": "/green_syria/static/media/desk_Image.5038686ecb931d46d35ac74e2a84c0a7.svg",
     "static/media/admin_image.svg": "/green_syria/static/media/admin_image.ec669930d9e5a2da8da289c129489857.svg",
     "static/media/Login_logo.png": "/green_syria/static/media/Login_logo.fd5afd258cb236d23762.png",
-    "static/media/volunteer_image_2.svg": "/green_syria/static/media/volunteer_image_2.b6fcdb9c67c61652622c139c058947e8.svg",
     "static/media/Cairo-Bold.ttf": "/green_syria/static/media/Cairo-Bold.d6131f35e4885ab019ba.ttf",
     "static/media/Cairo-Regular.ttf": "/green_syria/static/media/Cairo-Regular.808e3fbf5cb27d719d6d.ttf",
-    "static/media/plant_store.svg": "/green_syria/static/media/plant_store.94a230e1d95d48cb197cb49f1aec060d.svg",
-    "static/media/volunteer_edit_back.svg": "/green_syria/static/media/volunteer_edit_back.292f25ce772f5f808608d66ddc9ccc9f.svg",
+    "static/media/plant_store_2.png": "/green_syria/static/media/plant_store_2.e6c79493769a95a9c1ca.png",
     "static/media/explain_volunteer.svg": "/green_syria/static/media/explain_volunteer.a90e6eb7e2ca7b4c2bc59aa73a737546.svg",
     "index.html": "/green_syria/index.html",
-    "main.6125cf39.css.map": "/green_syria/static/css/main.6125cf39.css.map",
-    "main.e49ab3b9.js.map": "/green_syria/static/js/main.e49ab3b9.js.map"
+    "main.bb196d18.css.map": "/green_syria/static/css/main.bb196d18.css.map",
+    "main.b26055f2.js.map": "/green_syria/static/js/main.b26055f2.js.map"
   },
   "entrypoints": [
-    "static/css/main.6125cf39.css",
-    "static/js/main.e49ab3b9.js"
+    "static/css/main.bb196d18.css",
+    "static/js/main.b26055f2.js"
   ]
 }
