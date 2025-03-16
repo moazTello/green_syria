@@ -112,7 +112,7 @@ const AddPlantStore = () => {
           className="rounded-[5%] w-[50%] md:w-[80%] mt-4 md:my-0"
         />
         <p className="text-right fontReg w-[80%] md:w-[90%] my-10 text-white text-sm md:text-lg">
-          من المفضل ان تكون قياسات الصورة المرفقة للمشتل بقياس العرض ضعفي الطول
+          يجب ان تكون قياسات الصور المرفقة للمشتل بقياس العرض يساوي الطول
           لتتناسب مع قياس واجهات التطبيق
         </p>
         <img
