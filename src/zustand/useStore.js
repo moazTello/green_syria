@@ -773,29 +773,6 @@ const useStore = create((set) => ({
     }
   },
 
-  // EditArticle: async (data, id) => {
-  //   set({ isLoading: true, error: null });
-  //   try {
-  //     const response = await DataTransfer.post(
-  //       `/api/admin/updateCategory/${id}`,
-  //       data,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${useStore.getState().token}`,
-  //           // 'Content-Type': 'application/json',
-  //           "Content-Type": "multipart/form-data",
-  //           _method: "put",
-  //         },
-  //       }
-  //     );
-  //     set({ isLoading: false });
-  //     return response;
-  //   } catch (error) {
-  //     console.log(error);
-  //     set({ error: error.message, isLoading: false });
-  //   }
-  // },
-
   DeleteArticle: async (id) => {
     set({ isLoading: true, error: null });
     try {

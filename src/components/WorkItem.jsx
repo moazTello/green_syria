@@ -19,10 +19,10 @@ const WorkItem = ({ data, deleted }) => {
     }
   };
   return (
-    <div className="w-64 h-96 rounded-lg bg-gradient-to-t from-[#ffffff] to-[#f5f6dd] flex flex-col justify-start items-center m-2 md:my-4 float-right shadow-3xl shadow-gray-300">
+    <div className="w-64  rounded-lg bg-gradient-to-t from-[#ffffff] py-5 to-[#f5f6dd] flex flex-col justify-start items-center m-2 md:my-4 float-right shadow-3xl shadow-gray-300 no-scrollbar">
       <img
         src={data?.images?.length ? data?.images[0]?.img : images.homeImage}
-        className={`${"w-56 h-28 bg-no-repeat bg-center bg-cover m-5 rounded-t-lg"}`}
+        className={`${"w-52 h-52 bg-no-repeat mb-5 bg-center bg-cover rounded-lg"}`}
         alt=""
       />
       <div className="w-full flex flex-col justify-start items-center px-4">
@@ -39,7 +39,7 @@ const WorkItem = ({ data, deleted }) => {
             <FaLocationDot/>
           </span>
         </div>
-        <p className="text-right bg-slate-600 px-2 h-24 fontReg w-full rounded-b-lg text-yellow-50 text-sm md:text-lg mt-3 py-1 overflow-auto">
+        <p className="text-right bg-slate-600 px-2 h-24 fontReg w-full rounded-b-lg text-yellow-50 text-sm md:text-lg mt-3 py-1 overflow-auto no-scrollbar">
           {data?.desc}
         </p>
       </div>

@@ -36,10 +36,10 @@ const Event = ({ data}) => {
         </p>
       </div>
       <div className="border-t-[0.5px] border-slate-300 h-1 w-[90%] my-3"></div>
-      <p className="text-right fontReg min-h-10 w-full text-green-600 text-sm md:text-lg px-5 overflow-auto">
+      <p className="text-right fontReg min-h-10 w-full text-green-600 text-sm md:text-lg px-5 overflow-auto no-scrollbar">
         {data?.orgName}  🏢
       </p>
-      <p className="text-right fontReg min-h-20 max-h-20 w-full text-green-600 text-sm md:text-lg px-5 pb-3 overflow-auto">
+      <p className="text-right fontReg min-h-20 max-h-20 w-full text-green-600 text-sm md:text-lg px-5 pb-3 overflow-auto no-scrollbar">
         {data?.desc}
       </p>
       <div className="w-full flex justify-center items-center mt-auto">

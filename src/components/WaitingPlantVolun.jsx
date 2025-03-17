@@ -13,7 +13,7 @@ const WaitingPlantVolun = ({ data, type }) => {
             ? "w-36 h-36 bg-no-repeat bg-center bg-cover m-2 rounded-full"
             : type === "admin"
             ? "w-36 h-36 bg-no-repeat bg-center bg-cover mt-5 mb-3 rounded-full"
-            : "w-56 h-28 bg-no-repeat bg-center bg-cover m-5 rounded-t-lg"
+            : "w-52 h-52 bg-no-repeat bg-center bg-cover m-5 rounded-lg"
         }`}
         alt=""
       />
@@ -37,13 +37,13 @@ const WaitingPlantVolun = ({ data, type }) => {
       </div>
       <div className="border-t-[0.5px] border-slate-300 h-1 w-[90%] my-3"></div>
       {data?.orgName && (
-        <p className="text-right fontReg w-full text-green-600 text-sm md:text-lg px-5 pb-1 overflow-auto">
+        <p className="text-right fontReg w-full text-green-600 text-sm md:text-lg px-5 pb-1 overflow-auto no-scrollbar">
           {data?.orgName} 🏢
         </p>
       )}
       {data?.email && (
         <div className="flex justify-end items-center w-full px-5">
-          <p className="text-right fontReg w-full text-green-600 text-sm md:text-lg px-2 overflow-auto">
+          <p className="text-right fontReg w-full text-green-600 text-sm md:text-lg px-2 overflow-auto no-scrollbar">
             {data?.email}
           </p>
           <MdOutlineMailOutline className="w-6 h-4 md:w-7 md:h-6 text-green-700" />
@@ -51,7 +51,7 @@ const WaitingPlantVolun = ({ data, type }) => {
       )}
       {data?.phone && (
         <div className="flex justify-end items-center w-full px-5">
-          <p className="text-right fontReg w-full text-green-600 text-sm md:text-lg px-2 overflow-auto">
+          <p className="text-right fontReg w-full text-green-600 text-sm md:text-lg px-2 overflow-auto no-scrollbar">
             {data?.phone}
           </p>
           <FaPhone className="w-6 h-3 md:w-7 md:h-4 text-green-700" />

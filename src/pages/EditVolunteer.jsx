@@ -216,7 +216,7 @@ const EditVolunteer = () => {
             {errors?.LogoImage && <p>{errors?.logo?.message}</p>}
             {watch("LogoImage") && watch("LogoImage")?.length > 0 && (
               <img
-                className="w-64 h-32 object-cover rounded-lg my-5"
+                className="w-64 h-64 object-cover rounded-lg my-5"
                 src={
                   typeof watch("LogoImage") === "string"
                     ? watch("LogoImage")

@@ -11,30 +11,35 @@
   }
 }
 @font-face {
-  font-family: 'CairoFontBold';
-  src: url('./assets/fonts/Cairo-Bold.ttf') format('truetype');
+  font-family: "CairoFontBold";
+  src: url("./assets/fonts/Cairo-Bold.ttf") format("truetype");
 }
 @font-face {
-  font-family: 'CairoFontRegular';
-  src: url('./assets/fonts/Cairo-Regular.ttf') format('truetype');
+  font-family: "CairoFontRegular";
+  src: url("./assets/fonts/Cairo-Regular.ttf") format("truetype");
 }
-.fontReg{
+.fontReg {
   font-family: "CairoFontRegular";
 }
-.fontBold{
+.fontBold {
   font-family: "CairoFontBold";
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
