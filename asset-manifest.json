@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/green_syria/static/css/main.535cd386.css",
-    "main.js": "/green_syria/static/js/main.1ec07d19.js",
+    "main.css": "/green_syria/static/css/main.acf13706.css",
+    "main.js": "/green_syria/static/js/main.c06258f0.js",
     "static/media/explain_admin.svg": "/green_syria/static/media/explain_admin.1eeda280bef98768db85f3b1f3b02c17.svg",
     "static/media/small_tree.png": "/green_syria/static/media/small_tree.434cb91f3eec20acf14a.png",
     "static/media/edit_plant_store.png": "/green_syria/static/media/edit_plant_store.2a83dfef22ba672e3553.png",
@@ -22,11 +22,11 @@
     "static/media/plant_store_2.png": "/green_syria/static/media/plant_store_2.e6c79493769a95a9c1ca.png",
     "static/media/explain_volunteer.svg": "/green_syria/static/media/explain_volunteer.a90e6eb7e2ca7b4c2bc59aa73a737546.svg",
     "index.html": "/green_syria/index.html",
-    "main.535cd386.css.map": "/green_syria/static/css/main.535cd386.css.map",
-    "main.1ec07d19.js.map": "/green_syria/static/js/main.1ec07d19.js.map"
+    "main.acf13706.css.map": "/green_syria/static/css/main.acf13706.css.map",
+    "main.c06258f0.js.map": "/green_syria/static/js/main.c06258f0.js.map"
   },
   "entrypoints": [
-    "static/css/main.535cd386.css",
-    "static/js/main.1ec07d19.js"
+    "static/css/main.acf13706.css",
+    "static/js/main.c06258f0.js"
   ]
 }
