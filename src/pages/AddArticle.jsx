@@ -48,7 +48,7 @@ const AddArticle = () => {
       const response = await addArticle(formData, categoryid);
       if (response?.status === 201) {
         toast.success("تم إضافة مقال جديد بنجاح");
-        navigate("/green_syria/dashboard");
+        navigate(`/green_syria/dashboard/categories/${categoryid}`);
       }
     } catch (error) {
       console.log(error);

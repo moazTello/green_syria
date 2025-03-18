@@ -19,13 +19,13 @@ const WorkItem = ({ data, deleted }) => {
     }
   };
   return (
-    <div className="w-64  rounded-lg bg-gradient-to-t from-[#ffffff] py-5 to-[#f5f6dd] flex flex-col justify-start items-center m-2 md:my-4 float-right shadow-3xl shadow-gray-300 no-scrollbar">
+    <div className="w-64  rounded-lg bg-gradient-to-t from-[#ffffff] pt-5 to-[#f5f6dd] flex flex-col justify-start items-center m-2 md:my-4 float-right shadow-3xl shadow-gray-300 no-scrollbar">
       <img
         src={data?.images?.length ? data?.images[0]?.img : images.homeImage}
         className={`${"w-52 h-52 bg-no-repeat mb-5 bg-center bg-cover rounded-lg"}`}
         alt=""
       />
-      <div className="w-full flex flex-col justify-start items-center px-4">
+      <div className="w-full flex flex-col justify-start items-center px-4 pb-5">
         <p className="text-right fontBold w-full text-green-700 text-sm md:text-lg ">
           {data?.name}
         </p>

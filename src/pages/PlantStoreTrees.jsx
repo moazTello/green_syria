@@ -18,12 +18,10 @@ const PlantStoreTrees = () => {
         <div className="w-full flex justify-between items-center mt-10 px-5 md:px-10">
           <BiSolidMessageCheck className="text-white text-2xl md:text-6xl" />
           <p className="text-white fontReg text-right w-full text-xl md:text-4xl">
-            {" "}
             الشجرات <span className="p-2  bg-white rounded-lg mx-1">🌳</span>
           </p>
         </div>
         <p className="text-slate-50 fontReg text-sm w-full px-8 md:px-16 my-2 md:my-4 md:text-lg text-right">
-          {" "}
           هنا يمكنك رؤية كافة الشجرات الخاصة بالمشتل و يمكنك إضافة شجرة جديدة من خلال إضافة شجرة
         </p>
       </div>
@@ -78,7 +76,6 @@ const PlantStoreTrees = () => {
       {tag === 3 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
-            {" "}
             هنا تظهر لك الأشجار المسندة الى متطوع و هي اعمال منجزة و التي لا
             يمكنك حذفها
           </p>
@@ -97,7 +94,6 @@ const PlantStoreTrees = () => {
       {tag === 2 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
-            {" "}
             هنا تظهر لك الأشجار المسندة الى متطوع و هي غير منجزة بعد و التي لا
             يمكنك حذفها
           </p>
@@ -116,7 +112,6 @@ const PlantStoreTrees = () => {
       {tag === 1 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
-            {" "}
             هنا تظهر لك الأشجار المسندة الى متطوع و في انتظار قبولها من قبله او
             رفضها وهي غير منجزة و التي لا يمكنك حذفها
           </p>
@@ -135,7 +130,6 @@ const PlantStoreTrees = () => {
       {tag === 0 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
-            {" "}
             هنا تظهر لك الأشجار الغير منجزة و الغير مسندة الى اي متطوع و التي
             يمكنك حذفها
           </p>

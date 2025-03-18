@@ -73,7 +73,6 @@ const VolunteerWorks = () => {
       {tag === 3 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
-            {" "}
             هنا تظهر لك الأعمال و الأشجار المسندة الى المتطوع و هي اعمال منجزة
           </p>
           <div className="w-full flex justify-center">
@@ -101,7 +100,6 @@ const VolunteerWorks = () => {
       {tag === 2 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
-            {" "}
             هنا تظهر لك الأعمال و الأشجار المسندة الى المتطوع و هي غير منجزة بعد
           </p>
           <div className="w-full flex justify-center">
@@ -149,7 +147,6 @@ const VolunteerWorks = () => {
       {tag === 0 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
-            {" "}
             هنا تظهر لك الأعمال الغير منجزة و الأشجار الغير مزروعة الغير مسندة
             الى المتطوع بعد وفي انتظار الموافقة عليها
           </p>
@@ -157,8 +154,8 @@ const VolunteerWorks = () => {
             <div
               className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${value}`}
             >
-              {volunteerWorksList?.data?.trees_Que?.length > 0 &&
-                volunteerWorksList?.data?.trees_Que?.map((work, index) => (
+              {volunteerWorksList?.trees_Que?.length > 0 &&
+                volunteerWorksList?.trees_Que?.map((work, index) => (
                   <WorkItem deleted={true} key={index} data={work} />
                 ))}
             </div>
@@ -169,7 +166,7 @@ const VolunteerWorks = () => {
             >
               {volunteerWorksList?.works_Que?.length > 0 &&
                 volunteerWorksList?.works_Que?.map((work, index) => (
-                  <WorkItem deleted={true} key={index} data={work} />
+                  <WorkItem key={index} data={work} />
                 ))}
             </div>
           </div>

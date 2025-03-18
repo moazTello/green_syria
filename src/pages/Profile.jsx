@@ -16,7 +16,7 @@ const Profile = () => {
     setValue,
     watch,
   } = useForm();
-  const { isLoading, EditAdminAss,EditAdmin, user } = useStore();
+  const { isLoading, EditAdminAss,EditAdmin, user, logoutAdmin } = useStore();
   useEffect(() => {
     const fetch = async () => {
       if(!user) return;
@@ -105,7 +105,10 @@ const Profile = () => {
       console.log(response);
       if (response?.status === 200) {
         toast.success("تم تعديل الملف الشخصي بنجاح");
-        navigate("/green_syria/dashboard");
+        await logoutAdmin();
+        sessionStorage.setItem("accessT", null);
+        sessionStorage.setItem("user", null);
+        navigate("/green_syria");
       }
       if (
         response?.response?.data?.message ===
@@ -223,7 +226,7 @@ const Profile = () => {
             {errors?.LogoImage && <p>{errors?.logo?.message}</p>}
             {watch("LogoImage") && watch("LogoImage")?.length > 0 && (
               <img
-                className="w-64 h-32 object-cover rounded-lg my-5"
+                className="w-64 h-64 object-cover rounded-lg my-5"
                 src={
                   typeof watch("LogoImage") === "string"
                     ? watch("LogoImage")
@@ -261,7 +264,7 @@ const Profile = () => {
                       key={index}
                       src={src}
                       alt={`image-${index}`}
-                      className="w-64 h-32 object-cover rounded-lg"
+                      className="w-64 h-64 object-cover rounded-lg"
                       onLoad={() =>
                         file instanceof File && URL.revokeObjectURL(src)
                       }

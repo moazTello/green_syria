@@ -17,21 +17,13 @@ const Works = () => {
         <div className="w-full flex justify-between items-center mt-10 px-5 md:px-10">
           <BiSolidMessageCheck className="text-white text-2xl md:text-6xl" />
           <p className="text-white fontReg text-right w-full text-xl md:text-4xl">
-            {" "}
             الأعمال ⚒️
           </p>
         </div>
         <p className="text-slate-50 fontReg text-sm w-full px-8 md:px-16 my-2 md:my-4 md:text-lg text-right">
-          {" "}
           هنا يمكنك رؤية كافة الأعمال
         </p>
       </div>
-      {/* <Link
-        to="/green_syria/dashboard/volunteers/addvolunteer"
-        className="my-2 md:my-5 fontReg bg-slate-50 w-[80%] text-center rounded-lg p-2 md:p-4 text-sm md:text-lg text-green-600 hover:bg-yellow-50"
-      >
-        إضافة عمل جديد
-      </Link> */}
       <div className="flex fontReg text-sm md:text-lg items-center border-t-2 border-yellow-200 w-[90%] justify-center my-5">
         <button
           onClick={() => setTag(0)}
@@ -74,11 +66,9 @@ const Works = () => {
           المنجزة
         </button>
       </div>
-
       {tag === 3 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
-            {" "}
             هنا تظهر لك الأعمال المسندة الى متطوع و هي اعمال منجزة و التي لا
             يمكنك حذفها
           </p>
@@ -94,11 +84,9 @@ const Works = () => {
           </div>
         </>
       )}
-
       {tag === 2 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
-            {" "}
             هنا تظهر لك الأعمال المسندة الى متطوع و هي غير منجزة بعد و التي لا
             يمكنك حذفها
           </p>
@@ -114,11 +102,9 @@ const Works = () => {
           </div>
         </>
       )}
-
       {tag === 1 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
-            {" "}
             هنا تظهر لك الأعمال المسندة الى متطوع و في انتظار قبولها من قبله او
             رفضها وهي غير منجزة و التي لا يمكنك حذفها
           </p>
@@ -134,11 +120,9 @@ const Works = () => {
           </div>
         </>
       )}
-
       {tag === 0 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
-            {" "}
             هنا تظهر لك الأعمال الغير منجزة و الغير مسندة الى اي متطوع و التي
             يمكنك حذفها
           </p>

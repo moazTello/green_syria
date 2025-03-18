@@ -228,14 +228,6 @@ function App() {
               }
             />
           </Route>
-          {/* <Route
-            path="categories"
-            element={
-              <PrivateRoute allowedRoles={['Master']}>
-                <Categories/>
-              </PrivateRoute>
-            }
-          /> */}
           <Route path="institutions">
             <Route
               index

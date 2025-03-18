@@ -21,7 +21,7 @@ const AddCategory = () => {
       const response = await addCategory(formData);
       if (response?.status === 201) {
         toast.success("تم إضافة نوع مقالات جديد بنجاح");
-        navigate("/green_syria/dashboard");
+        navigate("/green_syria/dashboard/categories");
       }
     } catch (error) {
       console.log(error);
@@ -48,14 +48,14 @@ const AddCategory = () => {
         </p>
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
           <InputField
-              headerText="نوع المقال"
-              error={errors?.name?.message}
-              register={register("name", {
-                required: "اسم منظم الحدث مطلوب",
-              })}
-              isRequired={true}
-              customStyleComponent="mr-2"
-            />
+            headerText="نوع المقال"
+            error={errors?.name?.message}
+            register={register("name", {
+              required: "نوع المقال مطلوب",
+            })}
+            isRequired={true}
+            customStyleComponent="mr-2"
+          />
           <CustomButton
             buttonText="إضافة"
             customStyle

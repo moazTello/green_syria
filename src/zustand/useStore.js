@@ -810,6 +810,22 @@ const useStore = create((set) => ({
       set({ error: error.message, isLoading: false });
     }
   },
+
+
+  homeDataStatistics: [],
+  fetchHomeDataStatistics: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axiosPrivate.get(
+        "api/user/totalAmount"
+      );
+      console.log(response);
+      set({ homeDataStatistics: response?.data, isLoading: false });
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+    }
+  },
 }));
 
 export default useStore;

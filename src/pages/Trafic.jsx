@@ -216,13 +216,6 @@ const Trafic = () => {
               : statisticsType === 3
               ? "doughnut"
               : "bubble",
-          // type: "line",
-          // type: "radar",
-          // type: "doughnut",
-          // type: "pie",
-          // type: "polarArea",
-          // type: "bubble",
-          // type: "scatter",
           data: chartData[index],
           options: chartOptions,
         });
@@ -269,7 +262,6 @@ const Trafic = () => {
               </div>
               <div className="w-full min-h-[300px] h-[300px]">
                 <canvas
-                  // className="bg-orange-100"
                   style={{ backgroundColor: statisticsTypeColorBack }}
                   ref={(el) => (chartRefs.current[index] = el)}
                 ></canvas>
