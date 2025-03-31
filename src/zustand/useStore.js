@@ -44,15 +44,10 @@ const useStore = create((set) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axiosPrivate.get(
-        "api/admin/getAllAdminAss?page=1&per_page=50",
-        {
-          headers: {
-            Authorization: `Bearer ${useStore.getState().token}`,
-          },
-        }
+        "api/user/getAllAdminAss?page=1&per_page=50"
       );
       console.log(response);
-      set({ AdminsList: response.data.allAdminAss, isLoading: false });
+      set({ AdminsList: response.data, isLoading: false });
     } catch (error) {
       console.log(error);
       set({ error: error.message, isLoading: false });
@@ -175,7 +170,7 @@ const useStore = create((set) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axiosPrivate.get(
-        "api/admin/getAllVolunteers?page=1&per_page=50",
+        "api/admin/getAllVolunteers?page=1&per_page=100",
         {
           headers: {
             Authorization: `Bearer ${useStore.getState().token}`,
@@ -279,7 +274,8 @@ const useStore = create((set) => ({
   },
 
   volunteersWaitingList: [],
-  setVolunteersWaitingList: (volunteersWaitingList) => set({ volunteersWaitingList }),
+  setVolunteersWaitingList: (volunteersWaitingList) =>
+    set({ volunteersWaitingList }),
 
   fetchVolunteersWaitingList: async () => {
     set({ isLoading: true, error: null });
@@ -293,13 +289,38 @@ const useStore = create((set) => ({
         }
       );
       console.log(response);
-      set({ volunteersWaitingList: response?.data?.allVolunteers, isLoading: false });
+      set({
+        volunteersWaitingList: response?.data?.allVolunteers,
+        isLoading: false,
+      });
     } catch (error) {
       console.log(error);
       set({ error: error.message, isLoading: false });
     }
   },
 
+  assignTreeOrWorkVolunteer: async (data) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await DataTransfer.post(
+        "/api/admin/assignToVolunteer",
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      set({ isLoading: false });
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+      return error;
+    }
+  },
   //------------------------------------------------------------------------------------PlantStore
   plantStoresList: [],
   setPlantStoresList: (plantStoresList) => set({ plantStoresList }),
@@ -390,7 +411,8 @@ const useStore = create((set) => ({
   },
 
   plantStoresWaitingList: [],
-  setPlantStoresWaitingList: (plantStoresWaitingList) => set({ plantStoresWaitingList }),
+  setPlantStoresWaitingList: (plantStoresWaitingList) =>
+    set({ plantStoresWaitingList }),
 
   fetchPlantStoresWaitingList: async () => {
     set({ isLoading: true, error: null });
@@ -404,7 +426,10 @@ const useStore = create((set) => ({
         }
       );
       console.log(response);
-      set({ plantStoresWaitingList: response?.data?.allPlanstores, isLoading: false });
+      set({
+        plantStoresWaitingList: response?.data?.allPlanstores,
+        isLoading: false,
+      });
     } catch (error) {
       console.log(error);
       set({ error: error.message, isLoading: false });
@@ -517,6 +542,26 @@ const useStore = create((set) => ({
   //-------------------------------------------------------------------------------------trees
   plantStoreTreesList: [],
   setPlantStoreTreesList: (plantStoreTreesList) => set({ plantStoreTreesList }),
+  allTrees: null,
+
+  fetchTreesList: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axiosPrivate.get(
+        `api/volun/allTreesAndWorksQue?page=1&per_page=50`,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+          },
+        }
+      );
+      console.log(response);
+      set({ plantStoreTreesList: response.data, isLoading: false });
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+    }
+  },
 
   fetchPlantStoreTreesList: async (id) => {
     set({ isLoading: true, error: null });
@@ -574,6 +619,22 @@ const useStore = create((set) => ({
       );
       set({ isLoading: false });
       return response;
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+    }
+  },
+
+  treesAllList: [],
+
+  fetchTreesAllList: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axiosPrivate.get(
+        `/api/user/treeQue?page=1&per_page=50`
+      );
+      console.log("response", response);
+      set({ treesAllList: response.data, isLoading: false });
     } catch (error) {
       console.log(error);
       set({ error: error.message, isLoading: false });
@@ -682,7 +743,7 @@ const useStore = create((set) => ({
           },
         }
       );
-      console.log(response);
+      console.log("response", response);
       set({ worksList: response.data, isLoading: false });
     } catch (error) {
       console.log(error);
@@ -726,6 +787,29 @@ const useStore = create((set) => ({
   //     set({ error: error.message, isLoading: false });
   //   }
   // },
+
+  addWork: async (data) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await DataTransfer.post(
+        "/api/user/createWork",
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      set({ isLoading: false });
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+      return error;
+    }
+  },
 
   //-------------------------------------------------------------------------------------Articles
   articlesList: [],
@@ -793,17 +877,17 @@ const useStore = create((set) => ({
     }
   },
 
-  trafics:null,
+  trafics: null,
   getTrafics: async () => {
     set({ isLoading: true, error: null });
     try {
       const response = await DataTransfer.get(`/api/admin/getTraffic`, {
         headers: {
           Authorization: `Bearer ${useStore.getState().token}`,
-          Accept: 'application/json',
+          Accept: "application/json",
         },
       });
-      console.log(response)
+      console.log(response);
       set({ trafics: response.data.traffic, isLoading: false });
     } catch (error) {
       console.log(error);
@@ -811,14 +895,11 @@ const useStore = create((set) => ({
     }
   },
 
-
   homeDataStatistics: [],
   fetchHomeDataStatistics: async () => {
     set({ isLoading: true, error: null });
     try {
-      const response = await axiosPrivate.get(
-        "api/user/totalAmount"
-      );
+      const response = await axiosPrivate.get("api/user/totalAmount");
       console.log(response);
       set({ homeDataStatistics: response?.data, isLoading: false });
     } catch (error) {

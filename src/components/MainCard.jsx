@@ -52,13 +52,13 @@ const MainCard = ({ data, type }) => {
   };
 
   const helper = () => {
-    if(type === "plantStore"){
+    if (type === "plantStore") {
       sessionStorage.setItem("plantStore", JSON.stringify(data?.id));
     }
-  }
-  console.log(data)
+  };
+  console.log(data);
   return (
-    <div className="w-64 h-96 rounded-lg bg-gradient-to-t from-[#ffffff] to-[#f5f6dd] flex flex-col justify-start items-center m-2 md:my-4 float-right shadow-3xl shadow-gray-300">
+    <div className="w-64 rounded-lg bg-gradient-to-t from-[#ffffff] to-[#f5f6dd] flex flex-col justify-start items-center m-2 md:my-4 float-right shadow-3xl shadow-gray-300">
       <img
         src={data.logo === "no image" ? images.homeImage : data.logo}
         className={`${
@@ -77,6 +77,8 @@ const MainCard = ({ data, type }) => {
               ? `/green_syria/dashboard/volunteers/${data.id}`
               : type === "admin"
               ? `/green_syria/dashboard/institutions/${data.id}`
+              : type === "adminmaster"
+              ? `/green_syria/dashboard/institutions/admin/${data.id}`
               : `/green_syria/dashboard/plant_stores/${data.id}`
           } `}
           className="bg-white text-green-600 hover:text-white border-[1px] border-green-600 hover:bg-green-600 p-1 rounded-r-xl"
@@ -109,48 +111,78 @@ const MainCard = ({ data, type }) => {
           <FaPhone className="w-6 h-3 md:w-7 md:h-4 text-green-700" />
         </div>
       )}
+      {data?.role && (
+        <div className="flex justify-end items-center w-full px-5 h-12">
+          <p className="text-right fontReg w-full text-green-600 text-sm md:text-lg px-2 overflow-auto no-scrollbar">
+            {data?.role === "admin"
+              ? "آدمن"
+              : data?.role === "adminAss"
+              ? "مساعد آدمن"
+              : data?.role === "plan"
+              ? "مشتل"
+              : data?.role === "volun"
+              ? "متطوع"
+              : ""}
+          </p>
+          <span className="text-2xl">
+            {data?.role === "admin"
+              ? "⭐️"
+              : data?.role === "adminAss"
+              ? "👮🏻‍♂️"
+              : data?.role === "plan"
+              ? "🌴"
+              : data?.role === "volun"
+              ? "👷🏻‍♂️"
+              : ""}
+          </span>
+        </div>
+      )}
       {((user?.user.role === "admin" && type === "admin") ||
         type === "volunteer" ||
         type === "plantStore") && (
         <div className="w-full flex justify-center items-center mt-auto ">
           <button
             className={`${
-              type !== "admin" ? "rounded-bl-lg" : "rounded-b-lg"
+              type !== "admin" ? "rounded-bl-lg" : "rounded-bl-lg"
             } bg-red-500 w-full text-white  py-2 flex justify-center hover:bg-white hover:text-red-500`}
             onClick={handleDelete}
           >
             <RiDeleteBin5Line className="text-xl md:text-2xl mx-4 cursor-pointer " />
           </button>
-          {type !== "admin" && (
+          {
             <>
               {/* <p className="text-green-600"> | </p> */}
-              <Link
-                className="w-full bg-green-500 text-white py-2 flex justify-center hover:text-green-500 hover:bg-yellow-50"
-                to={`${
-                  type === "volunteer"
-                    ? `/green_syria/dashboard/volunteers/works/${data.volun_id}`
-                    : `/green_syria/dashboard/plant_stores/tree/${data.plan_id}`
-                } `}
-                onClick={helper}
-              >
-                {type !== "volunteer" ? (
-                  <RiTreeFill className="text-xl md:text-2xl mx-4 cursor-pointer" />
-                ) : (
-                  <GiDigDug className="text-xl md:text-2xl mx-4 cursor-pointer" />
-                )}
-              </Link>
+              {type !== "admin" && (
+                <Link
+                  className="w-full bg-green-500 text-white py-2 flex justify-center hover:text-green-500 hover:bg-yellow-50"
+                  to={`${
+                    type === "volunteer"
+                      ? `/green_syria/dashboard/volunteers/works/${data.volun_id}`
+                      : `/green_syria/dashboard/plant_stores/tree/${data.plan_id}`
+                  } `}
+                  onClick={helper}
+                >
+                  {type !== "volunteer" ? (
+                    <RiTreeFill className="text-xl md:text-2xl mx-4 cursor-pointer" />
+                  ) : (
+                    <GiDigDug className="text-xl md:text-2xl mx-4 cursor-pointer" />
+                  )}
+                </Link>
+              )}
               <Link
                 className="w-full bg-orange-900 text-white rounded-br-lg py-2 flex justify-center hover:bg-white hover:text-orange-900"
                 to={`${
                   type === "volunteer"
                     ? `/green_syria/dashboard/volunteers/edit/${data.id}`
+                    : type === "admin"
+                    ? `/green_syria/dashboard/institutions/edit/${data.id}`
                     : `/green_syria/dashboard/plant_stores/edit/${data.id}`
                 } `}
               >
                 <CiEdit className="text-xl md:text-2xl mx-4 cursor-pointer" />
               </Link>
             </>
-          )}
+          }
         </div>
       )}
     </div>

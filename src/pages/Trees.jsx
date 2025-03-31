@@ -3,12 +3,12 @@ import { BiSolidMessageCheck } from "react-icons/bi";
 import useStore from "../zustand/useStore";
 import WorkItem from "../components/WorkItem";
 
-const Works = () => {
-  const { fetchWorksList, worksList, fetchVolunteersList } = useStore();
+const Trees = () => {
+  const { fetchTreesAllList, treesAllList, fetchVolunteersList } = useStore();
   useEffect(() => {
-    fetchWorksList();
+    fetchTreesAllList();
     fetchVolunteersList();
-  }, [fetchWorksList, fetchVolunteersList]);
+  }, [fetchTreesAllList, fetchVolunteersList]);
  
   const [tag, setTag] = useState(0);
   const value = 4;
@@ -18,11 +18,11 @@ const Works = () => {
         <div className="w-full flex justify-between items-center mt-10 px-5 md:px-10">
           <BiSolidMessageCheck className="text-white text-2xl md:text-6xl" />
           <p className="text-white fontReg text-right w-full text-xl md:text-4xl">
-            الأعمال ⚒️
+            الأشجار
           </p>
         </div>
         <p className="text-slate-50 fontReg text-sm w-full px-8 md:px-16 my-2 md:my-4 md:text-lg text-right">
-          هنا يمكنك رؤية كافة الأعمال
+          هنا يمكنك رؤية كافة الأشجار
         </p>
       </div>
       <div className="flex fontReg text-sm md:text-lg items-center border-t-2 border-yellow-200 w-[90%] justify-center my-5">
@@ -70,15 +70,15 @@ const Works = () => {
       {tag === 3 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
-            هنا تظهر لك الأعمال المسندة الى متطوع و هي اعمال منجزة و التي لا
+            هنا تظهر لك الأشجار المسندة الى متطوع و هي أشجار مزروعة و التي لا
             يمكنك حذفها
           </p>
           <div className="w-full flex justify-center">
             <div
               className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${value}`}
             >
-              {worksList?.done_works?.length > 0 &&
-                worksList?.done_works?.map((work, index) => (
+              {treesAllList?.done_works?.length > 0 &&
+                treesAllList?.done_works?.map((work, index) => (
                   <WorkItem deleted={false} key={index} data={work} />
                 ))}
             </div>
@@ -88,15 +88,15 @@ const Works = () => {
       {tag === 2 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
-            هنا تظهر لك الأعمال المسندة الى متطوع و هي غير منجزة بعد و التي لا
+            هنا تظهر لك الأشجار المسندة الى متطوع و هي غير مزروعة بعد و التي لا
             يمكنك حذفها
           </p>
           <div className="w-full flex justify-center">
             <div
               className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${value}`}
             >
-              {worksList?.false_works?.length > 0 &&
-                worksList?.false_works?.map((work, index) => (
+              {treesAllList?.false_works?.length > 0 &&
+                treesAllList?.false_works?.map((work, index) => (
                   <WorkItem deleted={false} key={index} data={work}/>
                 ))}
             </div>
@@ -106,15 +106,15 @@ const Works = () => {
       {tag === 1 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
-            هنا تظهر لك الأعمال المسندة الى متطوع و في انتظار قبولها من قبله او
-            رفضها وهي غير منجزة و التي لا يمكنك حذفها
+            هنا تظهر لك الأشجار المسندة الى متطوع و في انتظار قبولها من قبله او
+            رفضها وهي غير مزروعة و التي لا يمكنك حذفها
           </p>
           <div className="w-full flex justify-center">
             <div
               className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${value}`}
             >
-              {worksList?.pindding_works?.length > 0 &&
-                worksList?.pindding_works?.map((work, index) => (
+              {treesAllList?.pindding_works?.length > 0 &&
+                treesAllList?.pindding_works?.map((work, index) => (
                   <WorkItem deleted={false} key={index} data={work} />
                 ))}
             </div>
@@ -124,15 +124,16 @@ const Works = () => {
       {tag === 0 && (
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
-            هنا تظهر لك الأعمال الغير منجزة و الغير مسندة الى اي متطوع
+            هنا تظهر لك الأشجار الغير مزروعة و الغير مسندة الى اي متطوع و التي
+            يمكنك حذفها
           </p>
           <div className="w-full flex justify-center">
             <div
               className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${value}`}
             >
-              {worksList?.waiting_works?.length > 0 &&
-                worksList?.waiting_works?.map((work, index) => (
-                  <WorkItem deleted={false} key={index} data={work} assigned="workAssign"/>
+              {treesAllList?.waiting_trees?.length > 0 &&
+                treesAllList?.waiting_trees?.map((work, index) => (
+                  <WorkItem deleted={true} key={index} data={work} assigned="treeAssign"/>
                 ))}
             </div>
           </div>
@@ -142,4 +143,4 @@ const Works = () => {
   );
 };
 
-export default Works;
+export default Trees;

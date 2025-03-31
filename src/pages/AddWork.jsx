@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import { images } from "../constants";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import InputField from "../components/fields/InputField";
@@ -6,8 +7,8 @@ import useStore from "../zustand/useStore";
 import CustomButton from "../components/fields/CustomButton";
 import ImageUploader from "../components/fields/ImageUploader";
 import imageCompression from "browser-image-compression";
-import { images } from "../constants";
-const AddArticle = () => {
+
+const AddWork = () => {
   const {
     register,
     handleSubmit,
@@ -15,8 +16,7 @@ const AddArticle = () => {
     setValue,
     watch,
   } = useForm();
-  const { categoryid } = useParams();
-  const { isLoading, addArticle } = useStore();
+  const { isLoading, addWork } = useStore();
   // const navigate = useNavigate();
   const onSubmit = async (data) => {
     const compressionOptions = {
@@ -25,8 +25,10 @@ const AddArticle = () => {
       useWebWorker: true,
     };
     const formData = new FormData();
-    formData.append("title", data.title);
+    formData.append("name", data.name);
+    formData.append("address", data.address);
     formData.append("desc", data.desc);
+    formData.append("mac", "00000000000000000");
     if (data?.Images && data.Images.length > 0) {
       toast.success("يتم الآن ضغط الصور");
       const imageArray = Array.isArray(data.Images)
@@ -44,13 +46,15 @@ const AddArticle = () => {
         }
       }
     }
+
     try {
-      const response = await addArticle(formData, categoryid);
+      const response = await addWork(formData);
       if (response?.status === 201) {
-        toast.success("تم إضافة مقال جديد بنجاح");
-        setValue("title", "");
+        toast.success("تم إضافة عمل جديد بنجاح");
+        setValue("name", "");
+        setValue("address", "");
         setValue("desc", "");
-        // navigate(`/green_syria/dashboard/categories/${categoryid}`);
+        setValue("mac", "");
       }
     } catch (error) {
       console.log(error);
@@ -59,40 +63,53 @@ const AddArticle = () => {
   };
   return (
     <div
-      className={`bg-gradient-to-t from-[#33663b] to-[#55B063] min-h-[100vh] w-full flex justify-center py-8`}
+      className={`bg-gradient-to-t from-[#33663b] to-[#55B063] min-h-[100vh] w-full flex flex-col md:flex-row md:justify-center items-center py-8`}
     >
-      <div className="w-full md:w-[80%] h-auto flex flex-col px-2 md:px-10 hover:shadow-3xl py-5 hover:shadow-yellow-50 justify-start items-center bg-[rgba(255,255,255,20%)] rounded-2xl">
+      <div className="w-full md:w-[40%] md:m-10 flex flex-col justify-center items-center">
+        <img
+          src={images.volunteer}
+          alt="logo"
+          className="rounded-[5%] w-[50%] md:w-[80%] mt-4 md:my-0"
+        />
+        <p className="text-right fontReg w-[80%] md:w-[90%] my-10 text-white text-sm md:text-lg">
+          من المفضل ان تكون قياسات الصورة المرفقة للعمل بقياس العرض يساوي الطول
+          لتتناسب مع قياس واجهات التطبيق
+        </p>
+        <img
+          src={images.explain_image_3}
+          alt="logo"
+          className="rounded-[5%] w-[50%] md:w-[80%] my-4 md:my-0"
+        />
+      </div>
+      <div className="w-full md:w-[50%] flex flex-col px-2 md:px-10 hover:shadow-3xl py-5 hover:shadow-yellow-50 justify-center items-center bg-[rgba(255,255,255,20%)] rounded-2xl">
         <p className="fontBold text-white text-lg md:text-2xl my-6">
-          إضافة مقال جديد
+          إضافة عمل جديد
         </p>
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
           <div className="w-full flex items-start justify-center">
             <InputField
-              headerText="عنوان المقال"
-              error={errors?.title?.message}
-              register={register("title", {
-                required: "عنوان المقال مطلوب",
+              headerText="إسم العمل"
+              error={errors?.name?.message}
+              register={register("name", {
+                required: "إسم العمل مطلوب",
               })}
               isRequired={true}
             />
           </div>
+          <InputField
+            headerText="العنوان"
+            error={errors?.address?.message}
+            register={register("address", {
+              required: "العنوان مطلوب",
+            })}
+            isRequired={true}
+          />
           <textarea
-            className="w-full fontReg outline-none min-h-40 md:min-h-80 resize-none rounded-xl bg-[#1a202c] bg-opacity-80 text-right p-4 text-green-300 text-sm md:text-lg"
+            className="w-full fontReg outline-none min-h-40 resize-none rounded-xl bg-[#1a202c] bg-opacity-80 text-right p-4 text-green-300 text-sm md:text-lg"
             {...register("desc")}
             required={true}
-            placeholder="المقال"
+            placeholder="إضافة وصف مختصر"
           />
-          <div className="w-full flex flex-col items-center justify-center">
-            <p className="text-right fontReg w-[80%] md:w-[90%] mt-5 text-white text-sm md:text-lg">
-              يجب ان تكون قياسات الصور المرفقة مع المقال بقياس العرض يساوي ضعفي
-              الطول لتتناسب مع التطبيق
-            </p>
-            <img
-              src={images.explain_image_4}
-              alt="logo"
-              className="rounded-[5%] w-[60%] md:w-[50%] mt-6 mb-4"
-            />
-          </div>
           <ImageUploader
             register={register}
             watch={watch}
@@ -112,4 +129,4 @@ const AddArticle = () => {
   );
 };
 
-export default AddArticle;
+export default AddWork;

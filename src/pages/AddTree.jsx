@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { images } from "../constants";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -17,7 +17,7 @@ const AddTree = () => {
     watch,
   } = useForm();
   const { isLoading, addPlantStoreTree } = useStore();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const onSubmit = async (data) => {
     const compressionOptions = {
       maxSizeMB: 0.4,
@@ -51,7 +51,9 @@ const AddTree = () => {
       const response = await addPlantStoreTree(formData, id);
       if (response?.status === 201) {
         toast.success("تم إضافة شجرة جديدة بنجاح");
-        navigate("/green_syria/dashboard");
+        setValue("name", "");
+        setValue("desc", "");
+        // navigate("/green_syria/dashboard");
       }
     } catch (error) {
       console.log(error);

@@ -22,33 +22,41 @@ const Home = () => {
             الذين يساهمون بإضافة أماكن تحتاج إلى زراعة الأشجار أو تنظيف المناطق
             العامة
           </p>
-          <p className="text-slate-50 fontBold text-sm md:text-lg my-16">
-            إحصائيات
+          <p className="text-slate-50 fontBold text-sm md:text-lg mt-16 mb-10">
+            سوريا الخضراء بالأرقام
           </p>
           <div className="flex w-full flex-col items-center">
             <div className="w-[60%] flex flex-col p-10 bg-blue-500 rounded-2xl justify-center items-center border-white border-2 my-2">
               <p className="text-white fontBold text-sm md:text-lg my-1">
                 عدد المشاتل
               </p>
-              <p className="text-white fontBold text-sm md:text-lg my-1">{homeDataStatistics.planstores}</p>
+              <p className="text-white fontBold text-sm md:text-lg my-1">
+                {homeDataStatistics?.planstores}
+              </p>
             </div>
             <div className="w-[60%] flex flex-col p-10 bg-violet-500 rounded-2xl justify-center items-center border-white border-2 my-2">
               <p className="text-white fontBold text-sm md:text-lg my-1">
                 عدد المتطوعين
               </p>
-              <p className="text-white fontBold text-sm md:text-lg my-1">{homeDataStatistics.volunteers}</p>
+              <p className="text-white fontBold text-sm md:text-lg my-1">
+                {homeDataStatistics?.volunteers}
+              </p>
             </div>
             <div className="w-[60%] flex flex-col p-10 bg-orange-500 rounded-2xl justify-center items-center border-white border-2 my-2">
               <p className="text-white fontBold text-sm md:text-lg my-1">
                 عدد الأعمال المكتملة
               </p>
-              <p className="text-white fontBold text-sm md:text-lg my-1">{homeDataStatistics.doneWork}</p>
+              <p className="text-white fontBold text-sm md:text-lg my-1">
+                {homeDataStatistics?.doneWork}
+              </p>
             </div>
             <div className="w-[60%] flex flex-col p-10 bg-red-500 rounded-2xl justify-center items-center border-white border-2 my-2">
               <p className="text-white fontBold text-sm md:text-lg my-1">
                 عدد الأشجار المزروعة
               </p>
-              <p className="text-white fontBold text-sm md:text-lg my-1">{homeDataStatistics.doneTree}</p>
+              <p className="text-white fontBold text-sm md:text-lg my-1">
+                {homeDataStatistics?.doneTree}
+              </p>
             </div>
           </div>
         </div>
@@ -61,7 +69,7 @@ const Home = () => {
           <p className="text-center fontBold w-[80%] md:w-[90%] my-5 text-white text-lg md:text-xl">
             سوريا الخضراء
           </p>
-          <p className="text-right fontReg w-[80%] md:w-[100%] my-2 text-white text-sm md:text-lg">
+          <div className="text-right fontReg w-[80%] md:w-[100%] my-2 text-white text-sm md:text-lg">
             <strong> : المكونات الرئيسية للمشروع</strong>
             <br />
             <strong> : المشاتل</strong>
@@ -114,14 +122,6 @@ const Home = () => {
               </li>
             </ul>
             <br />
-            <strong> : الرؤية</strong>
-            <p>
-              يطمح هذا المشروع إلى خلق شبكة من المتطوعين والمشاتل والمستخدمين
-              الذين يعملون معًا لتعزيز الاستدامة البيئية، مما يسهم في تحسين
-              جمالية البيئة وتقليل التلوث وزيادة المساحات الخضراء في المدن
-              والمناطق الحضرية
-            </p>
-            <br />
             <strong> : الفائدة المجتمعية</strong>
             <ul>
               <li>تحسين البيئة وزيادة المساحات الخضراء</li>
@@ -137,7 +137,7 @@ const Home = () => {
               يتم استخدام تطبيق موبايل سهل الاستخدام وداش بورد قوي يتيح إدارة
               وتنظيم كافة الأنشطة والمهام البيئية بكفاءة عالية
             </p>
-          </p>
+          </div>
         </div>
       </div>
       <div></div>

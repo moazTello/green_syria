@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { images } from "../constants";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -17,7 +17,7 @@ const AddVolunteer = () => {
     watch,
   } = useForm();
   const { isLoading, addVolunteer } = useStore();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const onSubmit = async (data) => {
     if (data.password !== data.password_confirmation) {
       return toast.error("تأكد من كلمة المرور");
@@ -65,7 +65,15 @@ const AddVolunteer = () => {
       const response = await addVolunteer(formData);
       if (response?.status === 201) {
         toast.success("تم إضافة متطوع جديد بنجاح");
-        navigate("/green_syria/dashboard");
+        setValue("name", "");
+        setValue("userName", "");
+        setValue("password", "");
+        setValue("password_confirmation", "");
+        setValue("email", "");
+        setValue("address", "");
+        setValue("phone", "");
+        setValue("desc", "");
+        // navigate("/green_syria/dashboard");
       }
       if (
         response?.response?.data?.message ===

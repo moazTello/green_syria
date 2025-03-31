@@ -503,6 +503,28 @@ const Navbar = () => {
             </Link>
             <Link
               onClick={() => setToggleFull((old) => !old)}
+              to="/green_syria/dashboard/addwork"
+              className={`text-lg font-small px-2 py-2 rounded-md transition-all duration-300 hover:bg-green-500 hover:text-white ${
+                path.pathname.includes("/green_syria/dashboard/addwork")
+                  ? customPathStyle
+                  : "text-green-300"
+              }`}
+            >
+              إضافة عمل
+            </Link>
+            <Link
+              onClick={() => setToggleFull((old) => !old)}
+              to="/green_syria/dashboard/trees"
+              className={`text-lg font-small px-2 py-2 rounded-md transition-all duration-300 hover:bg-green-500 hover:text-white ${
+                path.pathname.includes("/green_syria/dashboard/trees")
+                  ? customPathStyle
+                  : "text-green-300"
+              }`}
+            >
+              الأشجار
+            </Link>
+            <Link
+              onClick={() => setToggleFull((old) => !old)}
               to="/green_syria/dashboard/events"
               className={`text-lg font-small px-2 py-2 rounded-md transition-all duration-300 hover:bg-green-500 hover:text-white ${
                 path.pathname.includes("/green_syria/dashboard/events")
@@ -612,6 +634,29 @@ const Navbar = () => {
         >
           الأعمال
         </Link>
+        <Link
+          onClick={() => setToggleNav(false)}
+          to="/green_syria/dashboard/addwork"
+          className={`block px-4 py-2 rounded-md transition duration-300 text-right ${
+            path.pathname.includes("/green_syria/dashboard/addwork")
+              ? customPathStyle
+              : "text-green-300"
+          }`}
+        >
+          إضافة عمل
+        </Link>
+        <Link
+          onClick={() => setToggleNav(false)}
+          to="/green_syria/dashboard/trees"
+          className={`block px-4 py-2 rounded-md transition duration-300 text-right ${
+            path.pathname.includes("/green_syria/dashboard/trees")
+              ? customPathStyle
+              : "text-green-300"
+          }`}
+        >
+          الأشجار
+        </Link>
+
         <Link
           onClick={() => setToggleNav(false)}
           to="/green_syria/dashboard/categories"

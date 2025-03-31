@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { images } from "../constants";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -17,7 +17,7 @@ const AddPlantStore = () => {
     watch,
   } = useForm();
   const { isLoading, addPlantStore } = useStore();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const onSubmit = async (data) => {
     if (data.password !== data.password_confirmation) {
       return toast.error("تأكد من كلمة المرور");
@@ -86,7 +86,17 @@ const AddPlantStore = () => {
       const response = await addPlantStore(formData);
       if (response?.status === 201) {
         toast.success("تم إضافة مشتل جديد بنجاح");
-        navigate("/green_syria/dashboard");
+        setValue("name", "");
+        setValue("ownerName", "");
+        setValue("userName", "");
+        setValue("password", "");
+        setValue("password_confirmation", "");
+        setValue("email", "");
+        setValue("address", "");
+        setValue("phone", "");
+        setValue("desc", "");
+        setValue("openTime", "");
+        setValue("closeTime", "");
       }
       if (
         response?.response?.data?.message ===
@@ -96,8 +106,16 @@ const AddPlantStore = () => {
           "البريد الالكتروني مستخدم مسبقاً يرجى اختيار بريد الكتروني آخر "
         );
       }
+      if (
+        response?.response?.data?.message ===
+        "The user name has already been taken."
+      ) {
+        toast.error("اسم المستخدم مستخدم مسبقاً يرجى اختيار اسم مستخدم آخر ");
+      }
+      if (response?.status !== 201) {
+        toast.error("تأكد من كافة المعلومات");
+      }
     } catch (error) {
-      console.log(error);
       toast.error("تأكد من كافة المعلومات");
     }
   };

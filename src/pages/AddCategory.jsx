@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { images } from "../constants";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -10,10 +10,11 @@ const AddCategory = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
   const { isLoading, addCategory } = useStore();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const onSubmit = async (data) => {
     const formData = new FormData();
     formData.append("name", data.name);
@@ -21,7 +22,8 @@ const AddCategory = () => {
       const response = await addCategory(formData);
       if (response?.status === 201) {
         toast.success("تم إضافة نوع مقالات جديد بنجاح");
-        navigate("/green_syria/dashboard/categories");
+        setValue("name", "");
+        // navigate("/green_syria/dashboard/categories");
       }
     } catch (error) {
       console.log(error);

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { images } from "../constants";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -17,7 +17,7 @@ const AddEvent = () => {
     watch,
   } = useForm();
   const { isLoading, addEvent } = useStore();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const onSubmit = async (data) => {
     const compressionOptions = {
       maxSizeMB: 0.4,
@@ -54,7 +54,14 @@ const AddEvent = () => {
       const response = await addEvent(formData);
       if (response?.status === 201) {
         toast.success("تم إضافة حدث جديد بنجاح");
-        navigate("/green_syria/dashboard");
+        setValue("title", "");
+        setValue("orgName", "");
+        setValue("address", "");
+        setValue("desc", "");
+        setValue("startDate", "");
+        setValue("endDate", "");
+        setValue("orgOwnerName", "");
+        // navigate("/green_syria/dashboard");
       }
     } catch (error) {
       console.log(error);

@@ -33,6 +33,10 @@ import DetailsArticle from "./pages/DetailsArticle";
 import VolunteerWorks from "./pages/VolunteerWorks";
 import DetailsPlantStoreWaiting from "./pages/DetailsPlantStoreWaiting";
 import DetailsVolunteerWaiting from "./pages/DetailsVolunteerWaiting";
+import DetailsInstitutionAdmin from "./pages/DetailsInstitutionAdmin";
+import Trees from "./pages/Trees";
+import EditAdminAssistent from "./pages/EditAdminAssistent";
+import AddWork from "./pages/AddWork";
 function App() {
   return (
     <>
@@ -71,7 +75,22 @@ function App() {
               </PrivateRoute>
             }
           />
-
+          <Route
+            path="addwork"
+            element={
+              <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                <AddWork />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="trees"
+            element={
+              <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                <Trees />
+              </PrivateRoute>
+            }
+          />
           <Route path="events">
             <Route
               index
@@ -242,6 +261,22 @@ function App() {
               element={
                 <PrivateRoute allowedRoles={["adminAss", "admin"]}>
                   <DetailsInstitution />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="admin/:institutionid"
+              element={
+                <PrivateRoute allowedRoles={["adminAss", "admin"]}>
+                  <DetailsInstitutionAdmin />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="edit/:institutionid"
+              element={
+                <PrivateRoute allowedRoles={["admin"]}>
+                  <EditAdminAssistent />
                 </PrivateRoute>
               }
             />

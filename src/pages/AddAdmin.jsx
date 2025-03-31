@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { images } from "../constants";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -18,7 +18,7 @@ const AddAdmin = () => {
     watch,
   } = useForm();
   const { isLoading, addAdmin, addAdminAssisstent } = useStore();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [type, setType] = useState(false);
   const onSubmit = async (data) => {
     if (data.password !== data.password_confirmation) {
@@ -89,7 +89,15 @@ const AddAdmin = () => {
       }
       if (response?.status === 201) {
         toast.success("تم إضافة آدمن جديد بنجاح");
-        navigate("/green_syria/dashboard");
+        setValue("name", "");
+        setValue("orgName", "");
+        setValue("password", "");
+        setValue("password_confirmation", "");
+        setValue("email", "");
+        setValue("address", "");
+        setValue("phone", "");
+        setValue("desc", "");
+        // navigate("/green_syria/dashboard");
       }
       if (
         response?.response?.data?.message ===
@@ -116,9 +124,9 @@ const AddAdmin = () => {
         />
         <p className="text-right fontReg w-[80%] md:w-[90%] mt-5 text-white text-sm md:text-lg">
           هنا يمكنك إضافة آدمن رئيسي او مؤسسة (آدمن مساعد) قم بتفعيل خيار آدمن
-          رئيسي ليستطيع من الإطلاع على الزيارات و إضافة آدمن، يجب ان تكون
-          قياسات الصور المرفقة للمتطوع بقياس العرض يساوي الطول لتتناسب مع قياس
-          واجهات التطبيق
+          رئيسي ليستطيع من الإطلاع على الزيارات و إضافة آدمن، يجب ان تكون قياسات
+          الصور المرفقة للمتطوع بقياس العرض يساوي الطول لتتناسب مع قياس واجهات
+          التطبيق
         </p>
         <img
           src={images.explain_image_3}

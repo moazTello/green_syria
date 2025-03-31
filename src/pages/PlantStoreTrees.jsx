@@ -5,11 +5,12 @@ import useStore from "../zustand/useStore";
 import WorkItem from "../components/WorkItem";
 
 const PlantStoreTrees = () => {
-  const { fetchPlantStoreTreesList, plantStoreTreesList } = useStore();
+  const { fetchPlantStoreTreesList, plantStoreTreesList, fetchVolunteersList } = useStore();
   const {plantstoreid} = useParams()
   useEffect(() => {
     fetchPlantStoreTreesList(plantstoreid);
-  }, [fetchPlantStoreTreesList, plantstoreid]);
+    fetchVolunteersList();
+  }, [fetchPlantStoreTreesList, plantstoreid, fetchVolunteersList]);
     const [tag, setTag] = useState(0);
   const value = 4;
   return (
@@ -139,7 +140,7 @@ const PlantStoreTrees = () => {
             >
               {plantStoreTreesList?.waiting_trees?.length > 0 &&
                 plantStoreTreesList?.waiting_trees?.map((tree, index) => (
-                  <WorkItem deleted={true} key={index} data={tree} />
+                  <WorkItem deleted={true} key={index} data={tree} assigned="treeAssign"/>
                 ))}
             </div>
           </div>
