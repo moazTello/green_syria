@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/green_syria/static/css/main.77e34db4.css",
-    "main.js": "/green_syria/static/js/main.9d04aaab.js",
+    "main.js": "/green_syria/static/js/main.c73f8cde.js",
     "static/media/explain_admin.svg": "/green_syria/static/media/explain_admin.1eeda280bef98768db85f3b1f3b02c17.svg",
     "static/media/small_tree.png": "/green_syria/static/media/small_tree.434cb91f3eec20acf14a.png",
     "static/media/edit_plant_store.png": "/green_syria/static/media/edit_plant_store.2a83dfef22ba672e3553.png",
@@ -23,10 +23,10 @@
     "static/media/explain_volunteer.svg": "/green_syria/static/media/explain_volunteer.a90e6eb7e2ca7b4c2bc59aa73a737546.svg",
     "index.html": "/green_syria/index.html",
     "main.77e34db4.css.map": "/green_syria/static/css/main.77e34db4.css.map",
-    "main.9d04aaab.js.map": "/green_syria/static/js/main.9d04aaab.js.map"
+    "main.c73f8cde.js.map": "/green_syria/static/js/main.c73f8cde.js.map"
   },
   "entrypoints": [
     "static/css/main.77e34db4.css",
-    "static/js/main.9d04aaab.js"
+    "static/js/main.c73f8cde.js"
   ]
 }
