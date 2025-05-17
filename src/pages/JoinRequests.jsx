@@ -31,20 +31,20 @@ const JoinRequests = () => {
       <div className="flex fontReg text-sm md:text-lg items-center border-t-2 border-yellow-200 w-[90%] justify-center my-5">
         <button
           onClick={() => setTag(0)}
-          className={` p-2 rounded-b-lg hover:bg-orange-700 hover:text-yellow-200 mx-1 ${
+          className={` p-2 rounded-b-lg hover:bg-yellow-200 hover:text-green-700 mx-1 ${
             tag === 0
-              ? "shadow-2xl shadow-yellow-50 bg-orange-700 text-yellow-200"
-              : "bg-yellow-200 text-green-700"
+              ? "shadow-2xl shadow-yellow-50 bg-yellow-200 text-green-700"
+              : "bg-orange-700 text-yellow-200"
           }`}
         >
           المتطوعين
         </button>
         <button
           onClick={() => setTag(1)}
-          className={`p-2 rounded-b-lg hover:bg-orange-700 hover:text-yellow-200 mx-1 ${
+          className={`p-2 rounded-b-lg hover:bg-yellow-200 hover:text-green-700 mx-1 ${
             tag === 1
-              ? "shadow-2xl shadow-yellow-50 bg-orange-700 text-yellow-200"
-              : "bg-yellow-200 text-green-700"
+              ? "shadow-2xl shadow-yellow-50  bg-yellow-200 text-green-700"
+              : "bg-orange-700 text-yellow-200"
           }`}
         >
           المشاتل

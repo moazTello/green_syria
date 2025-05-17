@@ -41,12 +41,12 @@ const AddCategory = () => {
           className="rounded-[5%] w-[50%] md:w-[80%]"
         />
         <p className="text-center fontReg w-[80%] md:w-[90%] my-10 text-white text-sm md:text-lg">
-          هنا يمكنك إضافة نوع مقالات جديد
+         هنا يمكنك إضافة تصنيف جديد
         </p>
       </div>
       <div className="w-full md:w-[50%] flex flex-col px-2 md:px-10 hover:shadow-3xl py-5 hover:shadow-yellow-50 justify-center items-center bg-[rgba(255,255,255,20%)] rounded-2xl">
         <p className="fontBold text-white text-lg md:text-2xl my-6">
-          إضافة نوع مقالات جديد
+          إضافة تصنيف جديد
         </p>
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
           <InputField

@@ -59,7 +59,7 @@ const CategoryItem = ({ data }) => {
         <div className="w-full flex flex-col px-1 md:px-1 py-1 hover:shadow-yellow-50 justify-center items-center bg-[rgba(255,255,255,20%)] rounded-2xl">
           <div className="border-t-[0.5px] border-slate-300 h-1 w-[90%] my-3"></div>
           <p className="fontBold text-orange-700 text-sm md:text-sm my-1">
-            تعديل نوع مقالات
+           تعديل التصنيف
           </p>
           <form onSubmit={handleSubmit(onSubmit)} className="w-full">
             <InputField

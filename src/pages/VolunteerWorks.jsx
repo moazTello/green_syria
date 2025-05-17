@@ -148,7 +148,7 @@ const VolunteerWorks = () => {
         <>
           <p className="text-white text-right fontReg m-5 text-sm md:text-lg">
             هنا تظهر لك الأعمال الغير منجزة و الأشجار الغير مزروعة الغير مسندة
-            الى المتطوع بعد وفي انتظار الموافقة عليها
+           الى المتطوع بعد وفي انتظار الموافقة عليها
           </p>
           <div className="w-full flex justify-center">
             <div
@@ -156,7 +156,7 @@ const VolunteerWorks = () => {
             >
               {volunteerWorksList?.trees_Que?.length > 0 &&
                 volunteerWorksList?.trees_Que?.map((work, index) => (
-                  <WorkItem deleted={true} key={index} data={work} />
+                  <WorkItem key={index} data={work} />
                 ))}
             </div>
           </div>

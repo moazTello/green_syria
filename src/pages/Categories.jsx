@@ -15,18 +15,16 @@ const Categories = () => {
         <div className="w-full flex justify-between items-center mt-10 px-5 md:px-10">
           <BiSolidMessageCheck className="text-white text-2xl md:text-6xl"/>
           <p className="text-white text-right w-full text-xl md:text-4xl">
-            {" "}
             هنا المدونة 👈🏻
           </p>
         </div>
         <p className="text-slate-50 text-sm w-full px-8 md:px-16 my-2 md:my-4 md:text-lg text-right">
-          {" "}
-          يمكن لكادر العمل إضافة المقالات التوعوية و أنواع هذه المقالات لتظهر في
+          يمكن لكادر العمل إضافة المقالات التوعوية و تصنيفات هذه المقالات لتظهر في
           التطبيق لدى المستخدمين
         </p>
       </div>
       <Link to="/green_syria/dashboard/categories/addCategory" className="my-2 md:my-5 bg-slate-50 w-[80%] text-center rounded-lg p-2 md:p-4 text-sm md:text-lg text-green-600 hover:bg-yellow-50">
-        إضافة نوع مقالات جديد 
+        إضافة تصنيف جديد 
       </Link>
       <div className="w-full flex justify-center">
         <div

@@ -11,6 +11,7 @@ const WorkItem = ({ data, deleted, assigned }) => {
   const { plantstoreid } = useParams();
   const {
     DeletePlantStoreTree,
+    DeleteWork,
     fetchPlantStoreTreesList,
     volunteersList,
     isLoading,
@@ -20,15 +21,26 @@ const WorkItem = ({ data, deleted, assigned }) => {
   } = useStore();
 
   const handleDelete = async () => {
-    // eslint-disable-next-line no-restricted-globals
-    const result = confirm("هل أنت متأكد من حذف الشجرة ؟");
-    if (!result) return;
-    const response = await DeletePlantStoreTree(data?.id);
-    if (response?.status === 200) {
-      plantstoreid
-        ? await fetchPlantStoreTreesList(plantstoreid)
-        : await fetchTreesAllList();
-      toast.success("نم حذف الشجرة بنجاح ");
+    if (assigned === "workAssign") {
+      // eslint-disable-next-line no-restricted-globals
+      const result = confirm("هل أنت متأكد من حذف العمل ؟");
+      if (!result) return;
+      const response = await DeleteWork(data?.id);
+      if (response?.status === 200) {
+        await fetchWorksList();
+        toast.success("نم حذف العمل بنجاح ");
+      }
+    } else if (assigned === "treeAssign") {
+      // eslint-disable-next-line no-restricted-globals
+      const result = confirm("هل أنت متأكد من حذف الشجرة ؟");
+      if (!result) return;
+      const response = await DeletePlantStoreTree(data?.id);
+      if (response?.status === 200) {
+        plantstoreid
+          ? await fetchPlantStoreTreesList(plantstoreid)
+          : await fetchTreesAllList();
+        toast.success("نم حذف الشجرة بنجاح ");
+      }
     }
   };
 

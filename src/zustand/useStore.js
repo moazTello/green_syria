@@ -750,25 +750,25 @@ const useStore = create((set) => ({
       set({ error: error.message, isLoading: false });
     }
   },
-  // DeleteWork: async (id) => {
-  //   set({ isLoading: true, error: null });
-  //   try {
-  //     const response = await DataTransfer.delete(
-  //       `/api/admin/deleteCategory/${id}`,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${useStore.getState().token}`,
-  //           "Content-Type": "multipart/form-data",
-  //         },
-  //       }
-  //     );
-  //     set({ isLoading: false });
-  //     return response;
-  //   } catch (error) {
-  //     console.log(error);
-  //     set({ error: error.message, isLoading: false });
-  //   }
-  // },
+  DeleteWork: async (id) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await DataTransfer.delete(
+        `/api/admin/deleteWork/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      set({ isLoading: false });
+      return response;
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+    }
+  },
   // EditWork: async (data, id) => {
   //   set({ isLoading: true, error: null });
   //   try {
