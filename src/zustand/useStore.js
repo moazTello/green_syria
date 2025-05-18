@@ -44,7 +44,7 @@ const useStore = create((set) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axiosPrivate.get(
-        "api/user/getAllAdminAss?page=1&per_page=100"
+        "api/user/getAllAdminAss?page=1&per_page=180"
       );
       console.log(response);
       set({ AdminsList: response.data, isLoading: false });
@@ -170,7 +170,7 @@ const useStore = create((set) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axiosPrivate.get(
-        "api/admin/getAllVolunteers?page=1&per_page=100",
+        "api/admin/getAllVolunteers?page=1&per_page=180",
         {
           headers: {
             Authorization: `Bearer ${useStore.getState().token}`,
@@ -258,7 +258,7 @@ const useStore = create((set) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axiosPrivate.get(
-        `api/admin/getvolunteerWorks/${id}?page=1&per_page=100`,
+        `api/admin/getvolunteerWorks/${id}?page=1&per_page=180`,
         {
           headers: {
             Authorization: `Bearer ${useStore.getState().token}`,
@@ -281,7 +281,7 @@ const useStore = create((set) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axiosPrivate.get(
-        "api/admin/getAllVolunteersWaiting?page=1&per_page=100",
+        "api/admin/getAllVolunteersWaiting?page=1&per_page=180",
         {
           headers: {
             Authorization: `Bearer ${useStore.getState().token}`,
@@ -329,7 +329,7 @@ const useStore = create((set) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axiosPrivate.get(
-        "api/admin/getAllPlanstores?page=1&per_page=100",
+        "api/admin/getAllPlanstores?page=1&per_page=180",
         {
           headers: {
             Authorization: `Bearer ${useStore.getState().token}`,
@@ -418,7 +418,7 @@ const useStore = create((set) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axiosPrivate.get(
-        "api/admin/getAllPlanstoresWaiting?page=1&per_page=100",
+        "api/admin/getAllPlanstoresWaiting?page=1&per_page=180",
         {
           headers: {
             Authorization: `Bearer ${useStore.getState().token}`,
@@ -548,7 +548,7 @@ const useStore = create((set) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axiosPrivate.get(
-        `api/volun/allTreesAndWorksQue?page=1&per_page=100`,
+        `api/volun/allTreesAndWorksQue?page=1&per_page=180`,
         {
           headers: {
             Authorization: `Bearer ${useStore.getState().token}`,
@@ -567,7 +567,7 @@ const useStore = create((set) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axiosPrivate.get(
-        `api/admin/getPlanstoreTrees/${id}?page=1&per_page=100`,
+        `api/admin/getPlanstoreTrees/${id}?page=1&per_page=180`,
         {
           headers: {
             Authorization: `Bearer ${useStore.getState().token}`,
@@ -631,7 +631,7 @@ const useStore = create((set) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axiosPrivate.get(
-        `/api/user/treeQue?page=1&per_page=100`
+        `/api/user/treeQue?page=1&per_page=180`
       );
       console.log("response", response);
       set({ treesAllList: response.data, isLoading: false });
@@ -736,7 +736,7 @@ const useStore = create((set) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axiosPrivate.get(
-        `api/admin/getWorks?page=1&per_page=100`,
+        `api/admin/getWorks?page=1&per_page=180`,
         {
           headers: {
             Authorization: `Bearer ${useStore.getState().token}`,
@@ -815,7 +815,7 @@ const useStore = create((set) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axiosPrivate.get(
-        `api/admin/getArticlesOfCategory/${id}?page=1&per_page=100`,
+        `api/admin/getArticlesOfCategory/${id}?page=1&per_page=180`,
         {
           headers: {
             Authorization: `Bearer ${useStore.getState().token}`,

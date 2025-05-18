@@ -454,7 +454,7 @@ const Navbar = () => {
             {user?.user?.role === "admin" && (
               <>
                 <Link
-                  onClick={() => setToggleFull((old) => !old)}
+                  // onClick={() => setToggleFull((old) => !old)}
                   to="/green_syria/dashboard/traffics"
                   className={`text-lg font-small px-2 py-2 rounded-md transition-all duration-300 hover:bg-green-500 hover:text-white ${
                     path.pathname.includes("/green_syria/dashboard/traffics")
@@ -465,7 +465,7 @@ const Navbar = () => {
                   الزيارات
                 </Link>
                 <Link
-                  onClick={() => setToggleFull((old) => !old)}
+                  // onClick={() => setToggleFull((old) => !old)}
                   to="/green_syria/dashboard/addmasteradmin"
                   className={`text-lg font-small px-2 py-2 rounded-md transition-all duration-300 hover:bg-green-500 hover:text-white ${
                     path.pathname.includes(
@@ -480,7 +480,7 @@ const Navbar = () => {
               </>
             )}
             <Link
-              onClick={() => setToggleFull((old) => !old)}
+              // onClick={() => setToggleFull((old) => !old)}
               to="/green_syria/dashboard/categories"
               className={`text-lg font-small px-2 py-2 rounded-md transition-all duration-300 hover:bg-green-500 hover:text-white ${
                 path.pathname.includes("/green_syria/dashboard/categories")
@@ -491,7 +491,7 @@ const Navbar = () => {
               المدونة
             </Link>
             <Link
-              onClick={() => setToggleFull((old) => !old)}
+              // onClick={() => setToggleFull((old) => !old)}
               to="/green_syria/dashboard/works"
               className={`text-lg font-small px-2 py-2 rounded-md transition-all duration-300 hover:bg-green-500 hover:text-white ${
                 path.pathname.includes("/green_syria/dashboard/works")
@@ -502,7 +502,7 @@ const Navbar = () => {
               الأعمال
             </Link>
             <Link
-              onClick={() => setToggleFull((old) => !old)}
+              // onClick={() => setToggleFull((old) => !old)}
               to="/green_syria/dashboard/addwork"
               className={`text-lg font-small px-2 py-2 rounded-md transition-all duration-300 hover:bg-green-500 hover:text-white ${
                 path.pathname.includes("/green_syria/dashboard/addwork")
@@ -513,7 +513,7 @@ const Navbar = () => {
               إضافة عمل
             </Link>
             <Link
-              onClick={() => setToggleFull((old) => !old)}
+              // onClick={() => setToggleFull((old) => !old)}
               to="/green_syria/dashboard/trees"
               className={`text-lg font-small px-2 py-2 rounded-md transition-all duration-300 hover:bg-green-500 hover:text-white ${
                 path.pathname.includes("/green_syria/dashboard/trees")
@@ -524,7 +524,7 @@ const Navbar = () => {
               الأشجار
             </Link>
             <Link
-              onClick={() => setToggleFull((old) => !old)}
+              // onClick={() => setToggleFull((old) => !old)}
               to="/green_syria/dashboard/events"
               className={`text-lg font-small px-2 py-2 rounded-md transition-all duration-300 hover:bg-green-500 hover:text-white ${
                 path.pathname.includes("/green_syria/dashboard/events")

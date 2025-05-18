@@ -257,9 +257,9 @@ const AddAdmin = () => {
         <div
           className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${value}`}
         >
-          {AdminsList?.allAdminAss?.length > 0 &&
-            AdminsList?.allAdminAss?.map((admin, index) => (
-              <MainCard type="admin" key={index} data={admin} />
+          {AdminsList?.allAdmin?.length > 0 &&
+            AdminsList?.allAdmin?.map((admin, index) => (
+              <MainCard type="adminmaster" key={index} data={admin} />
             ))}
         </div>
       </div>
