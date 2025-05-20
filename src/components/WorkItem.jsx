@@ -7,8 +7,8 @@ import toast from "react-hot-toast";
 import { FaLocationDot } from "react-icons/fa6";
 import { useState } from "react";
 import CustomButton from "./fields/CustomButton";
-const WorkItem = ({ data, deleted, assigned }) => {
-  const { plantstoreid } = useParams();
+const WorkItem = ({ data, deleted, assigned, waiting }) => {
+  const { plantstoreid, volid } = useParams();
   const {
     DeletePlantStoreTree,
     DeleteWork,
@@ -18,6 +18,8 @@ const WorkItem = ({ data, deleted, assigned }) => {
     assignTreeOrWorkVolunteer,
     fetchWorksList,
     fetchTreesAllList,
+    fetchVolunteerWorksList,
+    putBackTreeOrWork,
   } = useStore();
 
   const handleDelete = async () => {
@@ -40,6 +42,27 @@ const WorkItem = ({ data, deleted, assigned }) => {
           ? await fetchPlantStoreTreesList(plantstoreid)
           : await fetchTreesAllList();
         toast.success("نم حذف الشجرة بنجاح ");
+      }
+    }
+  };
+  const handleBack = async () => {
+    if (waiting === "work") {
+      // eslint-disable-next-line no-restricted-globals
+      const result = confirm("هل أنت متأكد من إعادة العمل ؟");
+      if (!result) return;
+      const response = await putBackTreeOrWork(data?.id, waiting);
+      if (response?.status === 200) {
+        await fetchVolunteerWorksList(volid);
+        toast.success("نم إعادة العمل بنجاح ");
+      }
+    } else if (waiting === "tree") {
+      // eslint-disable-next-line no-restricted-globals
+      const result = confirm("هل أنت متأكد من إعادة الشجرة ؟");
+      if (!result) return;
+      const response = await putBackTreeOrWork(data?.id, waiting);
+      if (response?.status === 200) {
+        await fetchVolunteerWorksList(volid);
+        toast.success("نم إعادة الشجرة بنجاح ");
       }
     }
   };
@@ -151,6 +174,16 @@ const WorkItem = ({ data, deleted, assigned }) => {
         >
           <IoArrowUndoOutline className="text-xl md:text-2xl cursor-pointer" />
         </Link> */}
+        </div>
+      )}
+      {waiting && (
+        <div className="w-full flex justify-center items-center mt-auto ">
+          <button
+            className={`${"rounded-b-lg"} bg-blue-500 w-full text-white  py-2 flex justify-center hover:bg-white hover:text-blue-500`}
+            onClick={handleBack}
+          >
+            <RiDeleteBin5Line className="text-xl md:text-2xl mx-4 cursor-pointer " />
+          </button>
         </div>
       )}
     </div>

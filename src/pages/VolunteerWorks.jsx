@@ -156,7 +156,7 @@ const VolunteerWorks = () => {
             >
               {volunteerWorksList?.trees_Que?.length > 0 &&
                 volunteerWorksList?.trees_Que?.map((work, index) => (
-                  <WorkItem key={index} data={work} />
+                  <WorkItem key={index} data={work} waiting="tree"/>
                 ))}
             </div>
           </div>
@@ -166,7 +166,7 @@ const VolunteerWorks = () => {
             >
               {volunteerWorksList?.works_Que?.length > 0 &&
                 volunteerWorksList?.works_Que?.map((work, index) => (
-                  <WorkItem key={index} data={work} />
+                  <WorkItem key={index} data={work} waiting="work"/>
                 ))}
             </div>
           </div>

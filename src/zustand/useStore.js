@@ -321,6 +321,32 @@ const useStore = create((set) => ({
       return error;
     }
   },
+
+  putBackTreeOrWork: async (id,type) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await DataTransfer.post(
+        "/api/admin/openTreeOrWork",
+        {
+          id:id,
+          type:type
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      set({ isLoading: false });
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message, isLoading: false });
+      return error;
+    }
+  },
   //------------------------------------------------------------------------------------PlantStore
   plantStoresList: [],
   setPlantStoresList: (plantStoresList) => set({ plantStoresList }),
@@ -631,7 +657,14 @@ const useStore = create((set) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axiosPrivate.get(
-        `/api/user/treeQue?page=1&per_page=180`
+        // `/api/user/treeQue?page=1&per_page=180`
+        `/api/admin/getPlanstoreTrees/${-1}?page=1&per_page=180`,
+         {
+          headers: {
+            Authorization: `Bearer ${useStore.getState().token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       console.log("response", response);
       set({ treesAllList: response.data, isLoading: false });

@@ -77,8 +77,8 @@ const Trees = () => {
             <div
               className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${value}`}
             >
-              {treesAllList?.done_works?.length > 0 &&
-                treesAllList?.done_works?.map((work, index) => (
+              {treesAllList?.done_trees?.length > 0 &&
+                treesAllList?.done_trees?.map((work, index) => (
                   <WorkItem deleted={false} key={index} data={work} />
                 ))}
             </div>
@@ -95,8 +95,8 @@ const Trees = () => {
             <div
               className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${value}`}
             >
-              {treesAllList?.false_works?.length > 0 &&
-                treesAllList?.false_works?.map((work, index) => (
+              {treesAllList?.false_trees?.length > 0 &&
+                treesAllList?.false_trees?.map((work, index) => (
                   <WorkItem deleted={false} key={index} data={work}/>
                 ))}
             </div>
@@ -113,8 +113,8 @@ const Trees = () => {
             <div
               className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${value}`}
             >
-              {treesAllList?.pindding_works?.length > 0 &&
-                treesAllList?.pindding_works?.map((work, index) => (
+              {treesAllList?.pinding_trees?.length > 0 &&
+                treesAllList?.pinding_trees?.map((work, index) => (
                   <WorkItem deleted={false} key={index} data={work} />
                 ))}
             </div>
